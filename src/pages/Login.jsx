@@ -1,40 +1,89 @@
-import React from 'react';
-import Input from '../components/Input';
+import React, { useContext } from 'react';
+import { useHistory } from 'react-router-dom';
+import ContextPrimary from '../context/ContextPrimary';
+// import React, { useContext } from 'react';
+// import ContextPrimary from '../context/ContextPrimary';
+// import Button from '../components/Button';
+// import Input from '../components/Input';
 
 export default function Login() {
+  const {
+    email,
+    setEmail,
+    password,
+    setPassword,
+    loginDisabled,
+    setLoginDisabled,
+  } = useContext(ContextPrimary);
+
+  const REGEX_EMAIL = /\S+@\S+\.\S+/;
+  const MIN_PWD = 6;
+  const history = useHistory();
+
+  const loginValidation = () => {
+    let setDisabled = false;
+    setDisabled = !(REGEX_EMAIL.test(email) && password.length >= MIN_PWD);
+    setLoginDisabled(setDisabled);
+  };
+
+  const handleChange = ({ target: { name, value } }) => {
+    if (name === 'email-input') {
+      setEmail(value);
+    }
+    if (name === 'password-input') {
+      setPassword(value);
+    }
+    loginValidation();
+  };
+
+  const routeChange = () => {
+    const path = '/comidas';
+    history.push(path);
+  };
+
+  const handleSubmit = (event) => {
+    const user = {
+      email,
+    };
+    event.preventDefault();
+    localStorage.setItem('mealsToken', '1');
+    localStorage.setItem('cocktailsToken', '1');
+    localStorage.setItem('user', JSON.stringify(user));
+    routeChange();
+  };
+
   return (
     <div>
-      <Input
-        id="email-input"
-        name="email-input"
-        type="text"
-        placeholder="Digite seu melhor e-mail"
-        // value={ value }
-        // onChange={ handleChange }
-        labelText="E-mail"
-      />
-      <Input
-        id="password-input"
-        name="password-input"
-        type="password"
-        placeholder="Digite seu melhor e-mail"
-        // value={ value }
-        labelText="Senha"
-      />
+      <label htmlFor="email-input" className="">
+        <input
+          type="text"
+          id="email-input"
+          name="email-input"
+          data-testid="email-input"
+          placeholder="Digite seu melhor e-mail"
+          onChange={ handleChange }
+        />
+        E-mail
+      </label>
+      <label htmlFor="password-input" className="">
+        <input
+          type="password"
+          id="password-input"
+          name="password-input"
+          data-testid="password-input"
+          placeholder="Digite sua senha"
+          onChange={ handleChange }
+        />
+        Senha
+      </label>
+      <button
+        data-testid="login-submit-btn"
+        type="button"
+        disabled={ loginDisabled }
+        onClick={ handleSubmit }
+      >
+        Entrar
+      </button>
     </div>
   );
 }
-
-// * O input de email deve possuir o atributo `data-testid="email-input"`;
-// * O input de senha deve possuir o atributo `data-testid="password-input"`;
-// * O botão "Entrar" deve possuir o atributo `data-testid="login-submit-btn"`.
-
-// <input
-// type={ type }
-// id={ id }
-// name={ name }
-// data-testid={ id }
-// placeholder={ placeholder }
-// value={ value }
-// onChange={ onchange }
-// />

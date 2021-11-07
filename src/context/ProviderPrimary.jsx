@@ -3,11 +3,20 @@ import PropTypes from 'prop-types';
 import ContextPrimary from './ContextPrimary';
 
 function ProviderPrimary({ children }) {
-  const [stateA, setStateA] = useState('A'); // lembrar de setar estados
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loginDisabled, setLoginDisabled] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   const contextValue = {
-    stateA,
-    setStateA,
+    email,
+    setEmail,
+    password,
+    setPassword,
+    loginDisabled,
+    setLoginDisabled,
+    isLoading,
+    setIsLoading,
   };
 
   return (
