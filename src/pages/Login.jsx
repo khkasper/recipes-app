@@ -41,11 +41,11 @@ export default function Login() {
     history.push(path);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = () => {
     const user = {
       email,
     };
-    event.preventDefault();
+    // event.preventDefault();
     localStorage.setItem('mealsToken', '1');
     localStorage.setItem('cocktailsToken', '1');
     localStorage.setItem('user', JSON.stringify(user));

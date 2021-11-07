@@ -21,7 +21,6 @@ export default function Routes() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/" component={ Login } />
         <Route exact path="/comidas" component={ Comidas } />
         <Route exact path="/bebidas" component={ Bebidas } />
         <Route exact path="/comidas/:id" component={ ComidasDetalhes } />
@@ -29,8 +28,8 @@ export default function Routes() {
         <Route exact path="/comidas/:id/in-progress" component={ EmProgresso } />
         <Route exact path="/bebidas/:id/in-progress" component={ EmProgresso } />
         <Route exact path="/explorar" component={ Explorar } />
-        <Route exact path="/explorar/comidas" component={ ExplorarBebidas } />
-        <Route exact path="/explorar/bebidas" component={ ExplorarComidas } />
+        <Route exact path="/explorar/comidas" component={ ExplorarComidas } />
+        <Route exact path="/explorar/bebidas" component={ ExplorarBebidas } />
         <Route
           exact
           path="/explorar/comidas/ingredientes"
@@ -45,6 +44,7 @@ export default function Routes() {
         <Route exact path="/perfil" component={ Perfil } />
         <Route exact path="/receitas-feitas" component={ ReceitasFeitas } />
         <Route exact path="/receitas-favoritas" component={ ReceitasFavoritas } />
+        <Route path="/" component={ Login } />
         <Route path="" component={ NotFound } />
       </Switch>
     </BrowserRouter>
