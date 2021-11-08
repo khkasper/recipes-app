@@ -1,10 +1,6 @@
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import ContextPrimary from '../context/ContextPrimary';
-// import React, { useContext } from 'react';
-// import ContextPrimary from '../context/ContextPrimary';
-// import Button from '../components/Button';
-// import Input from '../components/Input';
 
 export default function Login() {
   const {
@@ -14,6 +10,7 @@ export default function Login() {
     setPassword,
     loginDisabled,
     setLoginDisabled,
+    setCurrentPage,
   } = useContext(ContextPrimary);
 
   const REGEX_EMAIL = /\S+@\S+\.\S+/;
@@ -45,11 +42,11 @@ export default function Login() {
     const user = {
       email,
     };
-    // event.preventDefault();
     localStorage.setItem('mealsToken', '1');
     localStorage.setItem('cocktailsToken', '1');
     localStorage.setItem('user', JSON.stringify(user));
     routeChange();
+    setCurrentPage('comidas');
   };
 
   return (

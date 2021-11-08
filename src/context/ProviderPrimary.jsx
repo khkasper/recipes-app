@@ -7,6 +7,10 @@ function ProviderPrimary({ children }) {
   const [password, setPassword] = useState('');
   const [loginDisabled, setLoginDisabled] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState('');
+  const [fetchResponse, setFetchResponse] = useState(null);
+  const [meals, setMeals] = useState(null);
+  const [drinks, setDrinks] = useState(null);
 
   const contextValue = {
     email,
@@ -17,6 +21,14 @@ function ProviderPrimary({ children }) {
     setLoginDisabled,
     isLoading,
     setIsLoading,
+    currentPage,
+    setCurrentPage,
+    fetchResponse,
+    setFetchResponse,
+    meals,
+    setMeals,
+    drinks,
+    setDrinks,
   };
 
   return (
