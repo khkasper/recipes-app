@@ -37,6 +37,28 @@
   font-weight: 900;
 }
 
+.label-search-bar {
+  margin-right: 5px;
+  padding: 0 15px 0 0;
+}
+
+.label-search-bar input {
+  margin-left: 5px;
+}
+
+.label-search-bar-text input {
+  width: 100%;
+}
+
+.footer {
+  bottom: 0;
+  position: fixed;
+}
+
+.img-card {
+  width: 50px;
+}
+
 @keyframes shake {
 
   0% {
