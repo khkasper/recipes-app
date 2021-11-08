@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import ContextPrimary from './ContextPrimary';
-import { API_FOOD_ALL, API_DRINK_ALL, TWELVE } from '../services/NoMagicStuff';
+import {
+  API_FOOD_ALL,
+  API_DRINK_ALL,
+  TWELVE,
+  FIVE,
+  CAT_DRINK,
+  CAT_FOOD,
+} from '../services/NoMagicStuff';
 
 function ProviderPrimary({ children }) {
   const [email, setEmail] = useState('');
@@ -14,20 +21,35 @@ function ProviderPrimary({ children }) {
   const [drinks, setDrinks] = useState(null);
   const [mealsArray, setMealsArray] = useState(false);
   const [drinksArray, setDrinksArray] = useState(false);
+  const [catList, setCatList] = useState([]);
+  const [mealsCatList, setMealsCatList] = useState([]);
+  const [drinksCatList, setDrinksCatList] = useState([]);
 
   useEffect(() => {
     async function getDrinksResults() {
+      const catName = 'drinks';
       const response = await fetch(API_DRINK_ALL);
       const result = await response.json();
       console.log(result);
       setDrinks(result.drinks.slice(0, TWELVE));
+      const categories = await fetch(`${CAT_DRINK}`);
+      const categoriesList = await categories.json();
+      // setCatList(categoriesList);
+      console.log(categoriesList, catName);
+      setDrinksCatList(categoriesList.drinks.slice(0, FIVE));
       setDrinksArray(true);
     }
     async function getMealsResults() {
+      const catName = 'meals';
       const response = await fetch(API_FOOD_ALL);
       const result = await response.json();
       console.log(result);
       setMeals(result.meals.slice(0, TWELVE));
+      const categories = await fetch(`${CAT_FOOD}`);
+      const categoriesList = await categories.json();
+      // setCatList(categoriesList);
+      console.log(categoriesList, catName);
+      setMealsCatList(categoriesList.meals.slice(0, FIVE));
       setMealsArray(true);
     }
     getDrinksResults();
@@ -55,6 +77,12 @@ function ProviderPrimary({ children }) {
     setMealsArray,
     drinksArray,
     setDrinksArray,
+    catList,
+    setCatList,
+    mealsCatList,
+    setMealsCatList,
+    drinksCatList,
+    setDrinksCatList,
   };
 
   return (

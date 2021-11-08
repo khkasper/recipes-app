@@ -7,5 +7,8 @@ export const API_DRINK = 'https://www.thecocktaildb.com/api/json/v1/1/';
 export const API_DRINK_ALL = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
 export const API_FOOD_ALL = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
 export const TWELVE = 12;
+export const FIVE = 5;
 export const ALT_1 = 'Sua busca deve conter somente 1 (um) caracter';
 export const ALT_2 = 'Sinto muito, não encontramos nenhuma receita para esses filtros.';
+export const CAT_FOOD = 'https://www.themealdb.com/api/json/v1/1/list.php?c=list';
+export const CAT_DRINK = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list';

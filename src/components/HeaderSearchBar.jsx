@@ -11,6 +11,8 @@ import {
   TWELVE,
   ALT_1,
   ALT_2,
+  CAT_DRINK,
+  CAT_FOOD,
 } from '../services/NoMagicStuff';
 
 export default function HeaderSearchBar() {
@@ -21,18 +23,25 @@ export default function HeaderSearchBar() {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const { setDrinksArray, setMealsArray } = useContext(ContextPrimary);
+  // const [catList, setCatList] = useState([]);
   const HISTORY = useHistory();
 
+  let response;
+  let result;
+  // let categories;
+  // let categoriesList;
+  // let catName;
+
   const handleAPI = async (ops, mtd) => {
-    let response;
-    let result;
     try {
       setError(null);
       setIsLoading(true);
       if (PRIMARY.currentPage === 'bebidas') {
+        // catName = 'drinks';
         response = await fetch(`${API_DRINK}${mtd}.php?${ops}=${searchInputText}`);
         result = await response.json();
         PRIMARY.setDrinks(result.drinks.slice(0, TWELVE));
+
         if (result.drinks.length > 1) {
           setDrinksArray(true);
         } else {
@@ -40,9 +49,13 @@ export default function HeaderSearchBar() {
           HISTORY.push(`/bebidas/${idDrink}`);
         }
       } else {
+        // catName = 'meals';
         response = await fetch(`${API_FOOD}${mtd}.php?${ops}=${searchInputText}`);
         result = await response.json();
         PRIMARY.setMeals(result.meals.slice(0, TWELVE));
+        // categories = await fetch(`${CAT_FOOD}`);
+        // categoriesList = await categories.json();
+        // setCatList(categoriesList);
         if (result.meals.length > 1) {
           setMealsArray(true);
         } else {
@@ -53,6 +66,11 @@ export default function HeaderSearchBar() {
       setData(result);
       PRIMARY.setFetchResponse(result);
       setIsLoading(false);
+      // if (catName === 'meals') {
+      //   setCatList(catList.meals[0]);
+      // } else {
+      //   setCatList(catList.drinks[0]);
+      // }
     } catch (erro) {
       result = null;
       global.alert(ALT_2);
