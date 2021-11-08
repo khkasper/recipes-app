@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import ContextPrimary from '../context/ContextPrimary';
 import Header from '../components/Header';
 import RecipeList from '../components/RecipeList';
+import Footer from '../components/Footer';
 
 export default function Bebidas() {
   const location = useLocation();
@@ -19,6 +20,7 @@ export default function Bebidas() {
     <div>
       <Header headerTitle="Bebidas" />
       { isArray && <RecipeList list={ drinks } page="bebidas" />}
+      <Footer />
     </div>
   );
 }
