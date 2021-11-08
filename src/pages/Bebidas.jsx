@@ -1,13 +1,14 @@
 import React, { useEffect, useContext } from 'react';
 import { useLocation } from 'react-router-dom';
-import Header from '../components/Header';
 import ContextPrimary from '../context/ContextPrimary';
+import Header from '../components/Header';
+import RecipeList from '../components/RecipeList';
 
 export default function Bebidas() {
   const location = useLocation();
   let page = location.pathname;
   page = page.replace('/', '');
-  const { setCurrentPage } = useContext(ContextPrimary);
+  const { setCurrentPage, isArray, drinks } = useContext(ContextPrimary);
   const handlePage = () => setCurrentPage(page);
 
   useEffect(() => {
@@ -17,6 +18,7 @@ export default function Bebidas() {
   return (
     <div>
       <Header headerTitle="Bebidas" />
+      { isArray && <RecipeList list={ drinks } page="bebidas" />}
     </div>
   );
 }

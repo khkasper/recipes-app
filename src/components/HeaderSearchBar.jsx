@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import ContextPrimary from '../context/ContextPrimary';
 import {
@@ -8,18 +8,20 @@ import {
   NAME,
   API_FOOD,
   API_DRINK,
+  TWELVE,
+  ALT_1,
+  ALT_2,
 } from '../services/NoMagicStuff';
 
 export default function HeaderSearchBar() {
   const PRIMARY = useContext(ContextPrimary);
-  const { currentPage } = useContext(ContextPrimary);
   const [searchInputText, setSearchInputText] = useState('');
   const [searchInputOption, setSearchInputOption] = useState('name');
   const [isLoading, setIsLoading] = useState(null);
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
+  const { isArray, setIsArray } = useContext(ContextPrimary);
   const HISTORY = useHistory();
-  console.log(isLoading && ' ' && error);
 
   const handleAPI = async (ops, mtd) => {
     let response;
@@ -27,53 +29,42 @@ export default function HeaderSearchBar() {
     try {
       setError(null);
       setIsLoading(true);
-      console.log('page: ' && currentPage);
       if (PRIMARY.currentPage === 'bebidas') {
         response = await fetch(`${API_DRINK}${mtd}.php?${ops}=${searchInputText}`);
         result = await response.json();
+        PRIMARY.setDrinks(result.drinks.slice(0, TWELVE));
+        if (result.drinks.length > 1) {
+          setIsArray(true);
+        } else {
+          const { idDrink } = result.drinks[0];
+          HISTORY.push(`/bebidas/${idDrink}`);
+        }
       } else {
         response = await fetch(`${API_FOOD}${mtd}.php?${ops}=${searchInputText}`);
         result = await response.json();
-      }
-    } catch (erro) {
-      result = null;
-      setError(erro.message);
-    } finally {
-      setData(result);
-      console.log(data);
-      setIsLoading(false);
-      PRIMARY.setFetchResponse(result);
-      if (PRIMARY.currentPage === 'comidas') { PRIMARY.setMeals(result.meals); }
-      if (PRIMARY.currentPage === 'bebidas') { PRIMARY.setDrinks(result.drinks); }
-    }
-  };
-
-  useEffect(() => {
-    if (PRIMARY.fetchResponse !== null) {
-      switch (PRIMARY.currentPage) {
-      case 'comidas':
-        if (PRIMARY.fetchResponse.meals.length === MAX_SEARCH_LENGTH_FL) {
-          const { idMeal } = PRIMARY.fetchResponse.meals[0];
+        PRIMARY.setMeals(result.meals.slice(0, TWELVE));
+        if (result.meals.length > 1) {
+          setIsArray(true);
+        } else {
+          const { idMeal } = result.meals[0];
           HISTORY.push(`/comidas/${idMeal}`);
         }
-        break;
-      case 'bebidas':
-        if (PRIMARY.fetchResponse.drinks.length === MAX_SEARCH_LENGTH_FL) {
-          const { idDrink } = PRIMARY.fetchResponse.drinks[0];
-          HISTORY.push(`/bebidas/${idDrink}`);
-        }
-        break;
-      default:
-        break;
       }
+      setData(result);
+      PRIMARY.setFetchResponse(result);
+      setIsLoading(false);
+    } catch (erro) {
+      result = null;
+      global.alert(ALT_2);
+      setError(erro.message);
     }
-  }, [PRIMARY, HISTORY]);
+  };
 
   const handleClick = async (event) => {
     event.preventDefault();
     if (searchInputText.length > MAX_SEARCH_LENGTH_FL
         && searchInputOption === FIRST_LETTER) {
-      global.alert('Sua busca deve conter somente 1 (um) caracter');
+      global.alert(ALT_1);
     } else {
       switch (searchInputOption) {
       case INGREDIENTS:

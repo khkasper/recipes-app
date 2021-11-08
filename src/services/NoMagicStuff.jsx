@@ -4,3 +4,6 @@ export const INGREDIENTS = 'ingredients';
 export const NAME = 'name';
 export const API_FOOD = 'https://www.themealdb.com/api/json/v1/1/';
 export const API_DRINK = 'https://www.thecocktaildb.com/api/json/v1/1/';
+export const TWELVE = 12;
+export const ALT_1 = 'Sua busca deve conter somente 1 (um) caracter';
+export const ALT_2 = 'Sinto muito, não encontramos nenhuma receita para esses filtros.';

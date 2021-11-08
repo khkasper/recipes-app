@@ -11,6 +11,7 @@ function ProviderPrimary({ children }) {
   const [fetchResponse, setFetchResponse] = useState(null);
   const [meals, setMeals] = useState(null);
   const [drinks, setDrinks] = useState(null);
+  const [isArray, setIsArray] = useState(false);
 
   const contextValue = {
     email,
@@ -29,6 +30,8 @@ function ProviderPrimary({ children }) {
     setMeals,
     drinks,
     setDrinks,
+    isArray,
+    setIsArray,
   };
 
   return (
