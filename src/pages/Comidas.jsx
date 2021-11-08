@@ -9,7 +9,7 @@ export default function Comidas() {
   const location = useLocation();
   let page = location.pathname;
   page = page.replace('/', '');
-  const { setCurrentPage, isArray, meals } = useContext(ContextPrimary);
+  const { setCurrentPage, mealsArray, meals } = useContext(ContextPrimary);
   const handlePage = () => setCurrentPage(page);
 
   useEffect(() => {
@@ -19,7 +19,7 @@ export default function Comidas() {
   return (
     <div>
       <Header headerTitle="Comidas" />
-      { isArray && <RecipeList list={ meals } page="comidas" />}
+      { mealsArray && <RecipeList list={ meals } page="comidas" />}
       <Footer />
     </div>
   );

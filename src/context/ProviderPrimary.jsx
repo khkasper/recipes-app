@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import ContextPrimary from './ContextPrimary';
+import { API_FOOD_ALL, API_DRINK_ALL, TWELVE } from '../services/NoMagicStuff';
 
 function ProviderPrimary({ children }) {
   const [email, setEmail] = useState('');
@@ -11,7 +12,27 @@ function ProviderPrimary({ children }) {
   const [fetchResponse, setFetchResponse] = useState(null);
   const [meals, setMeals] = useState(null);
   const [drinks, setDrinks] = useState(null);
-  const [isArray, setIsArray] = useState(false);
+  const [mealsArray, setMealsArray] = useState(false);
+  const [drinksArray, setDrinksArray] = useState(false);
+
+  useEffect(() => {
+    async function getDrinksResults() {
+      const response = await fetch(API_DRINK_ALL);
+      const result = await response.json();
+      console.log(result);
+      setDrinks(result.drinks.slice(0, TWELVE));
+      setDrinksArray(true);
+    }
+    async function getMealsResults() {
+      const response = await fetch(API_FOOD_ALL);
+      const result = await response.json();
+      console.log(result);
+      setMeals(result.meals.slice(0, TWELVE));
+      setMealsArray(true);
+    }
+    getDrinksResults();
+    getMealsResults();
+  }, []);
 
   const contextValue = {
     email,
@@ -30,8 +51,10 @@ function ProviderPrimary({ children }) {
     setMeals,
     drinks,
     setDrinks,
-    isArray,
-    setIsArray,
+    mealsArray,
+    setMealsArray,
+    drinksArray,
+    setDrinksArray,
   };
 
   return (

@@ -55,6 +55,10 @@
   position: fixed;
 }
 
+.img-card {
+  width: 50px;
+}
+
 @keyframes shake {
 
   0% {

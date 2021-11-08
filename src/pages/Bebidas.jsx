@@ -9,7 +9,7 @@ export default function Bebidas() {
   const location = useLocation();
   let page = location.pathname;
   page = page.replace('/', '');
-  const { setCurrentPage, isArray, drinks } = useContext(ContextPrimary);
+  const { setCurrentPage, drinksArray, drinks } = useContext(ContextPrimary);
   const handlePage = () => setCurrentPage(page);
 
   useEffect(() => {
@@ -19,7 +19,7 @@ export default function Bebidas() {
   return (
     <div>
       <Header headerTitle="Bebidas" />
-      { isArray && <RecipeList list={ drinks } page="bebidas" />}
+      { drinksArray && <RecipeList list={ drinks } page="bebidas" />}
       <Footer />
     </div>
   );

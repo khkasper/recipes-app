@@ -20,7 +20,7 @@ export default function HeaderSearchBar() {
   const [isLoading, setIsLoading] = useState(null);
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
-  const { isArray, setIsArray } = useContext(ContextPrimary);
+  const { setDrinksArray, setMealsArray } = useContext(ContextPrimary);
   const HISTORY = useHistory();
 
   const handleAPI = async (ops, mtd) => {
@@ -34,7 +34,7 @@ export default function HeaderSearchBar() {
         result = await response.json();
         PRIMARY.setDrinks(result.drinks.slice(0, TWELVE));
         if (result.drinks.length > 1) {
-          setIsArray(true);
+          setDrinksArray(true);
         } else {
           const { idDrink } = result.drinks[0];
           HISTORY.push(`/bebidas/${idDrink}`);
@@ -44,7 +44,7 @@ export default function HeaderSearchBar() {
         result = await response.json();
         PRIMARY.setMeals(result.meals.slice(0, TWELVE));
         if (result.meals.length > 1) {
-          setIsArray(true);
+          setMealsArray(true);
         } else {
           const { idMeal } = result.meals[0];
           HISTORY.push(`/comidas/${idMeal}`);

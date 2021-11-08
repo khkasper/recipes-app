@@ -5,7 +5,10 @@ const RecipeList = ({ list, page }) => (
   <div>
     {
       list.map((item, index) => (
-        <div data-testid={ `${index}-recipe-card` } key={ index }>
+        <div
+          data-testid={ `${index}-recipe-card` }
+          key={ index }
+        >
           <img
             data-testid={ `${index}-card-img` }
             alt={ page === 'comidas' ? item.strMeal : item.strDrink }
