@@ -6,6 +6,7 @@ import {
   TWELVE,
   ALT_2,
 } from './NoMagicStuff';
+
 let response;
 let result;
 
@@ -14,6 +15,7 @@ export default async function HandleAPI(category) {
   const [isLoading, setIsLoading] = useState(null);
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
+  console.log(isLoading && data && error);
 
   try {
     setError(null);

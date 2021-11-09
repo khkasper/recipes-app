@@ -25,6 +25,7 @@ function ProviderPrimary({ children }) {
   const [mealsCatList, setMealsCatList] = useState([]);
   const [drinksCatList, setDrinksCatList] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [recomendation, setRecomendation] = useState(null);
 
   useEffect(() => {
     async function getDrinksResults() {
@@ -84,6 +85,8 @@ function ProviderPrimary({ children }) {
     setDrinksCatList,
     selectedCategory,
     setSelectedCategory,
+    recomendation,
+    setRecomendation,
   };
 
   return (

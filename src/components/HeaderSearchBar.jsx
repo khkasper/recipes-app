@@ -24,6 +24,7 @@ export default function HeaderSearchBar() {
   const [error, setError] = useState(null);
   const { setDrinksArray, setMealsArray } = useContext(ContextPrimary);
   const HISTORY = useHistory();
+  console.log(isLoading && data && error);
 
   let response;
   let result;

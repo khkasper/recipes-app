@@ -9,6 +9,7 @@ import {
   TWELVE,
   ALT_2,
 } from '../services/NoMagicStuff';
+
 let response;
 let result;
 
@@ -18,6 +19,8 @@ const CategoryFilter = ({ list }) => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const { selectedCategory, setSelectedCategory } = useContext(ContextPrimary);
+
+  console.log(isLoading && data && error);
 
   async function handleAPI(category) {
     // let previousCategory = selectedCategory;
