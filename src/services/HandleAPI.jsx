@@ -14,7 +14,6 @@ export default async function HandleAPI(category) {
   const [isLoading, setIsLoading] = useState(null);
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
-  const [selectedCategory, setSelectedCategory] = useState();
 
   try {
     setError(null);
