@@ -19,7 +19,7 @@ export default function BebidasDetalhes() {
       await requestAPI(API_FOOD_ALL);
     };
     apiRequest();
-  }, [request, currentId, requestAPI]);
+  }, [currentId, request, requestAPI]);
 
   return (
     <div>

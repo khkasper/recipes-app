@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import ContextPrimary from '../context/ContextPrimary';
 import {
@@ -15,16 +15,10 @@ let result;
 
 const CategoryFilter = ({ list }) => {
   const PRIMARY = useContext(ContextPrimary);
-  const [isLoading, setIsLoading] = useState(null);
-  const [data, setData] = useState(null);
-  const [error, setError] = useState(null);
-  const { selectedCategory, setSelectedCategory } = useContext(ContextPrimary);
-
-  console.log(isLoading && data && error);
+  const { selectedCategory, setSelectedCategory, setIsLoading, setData, setError,
+  } = useContext(ContextPrimary);
 
   async function handleAPI(category) {
-    // let previousCategory = selectedCategory;
-
     if (selectedCategory === category || category === 'all') {
       await setSelectedCategory(null);
       category = null;

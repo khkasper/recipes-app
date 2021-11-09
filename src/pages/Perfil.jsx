@@ -7,7 +7,6 @@ import Footer from '../components/Footer';
 export default function Perfil() {
   const emailUser = localStorage.getItem('user');
   const user = JSON.parse(emailUser);
-
   const HISTORY = useHistory();
   const clearLocalStorage = () => {
     localStorage.clear();
@@ -28,7 +27,6 @@ export default function Perfil() {
           data-testid="profile-favorite-btn"
         >
           Receitas Favoritas
-
         </button>
       </Link>
       <button
@@ -37,7 +35,6 @@ export default function Perfil() {
         onClick={ clearLocalStorage }
       >
         Sair
-
       </button>
       <Footer />
     </>
