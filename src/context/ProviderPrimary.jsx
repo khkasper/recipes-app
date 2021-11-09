@@ -24,6 +24,8 @@ function ProviderPrimary({ children }) {
   const [catList, setCatList] = useState([]);
   const [mealsCatList, setMealsCatList] = useState([]);
   const [drinksCatList, setDrinksCatList] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [recomendation, setRecomendation] = useState(null);
 
   useEffect(() => {
     async function getDrinksResults() {
@@ -34,7 +36,6 @@ function ProviderPrimary({ children }) {
       setDrinks(result.drinks.slice(0, TWELVE));
       const categories = await fetch(`${CAT_DRINK}`);
       const categoriesList = await categories.json();
-      // setCatList(categoriesList);
       console.log(categoriesList, catName);
       setDrinksCatList(categoriesList.drinks.slice(0, FIVE));
       setDrinksArray(true);
@@ -47,7 +48,6 @@ function ProviderPrimary({ children }) {
       setMeals(result.meals.slice(0, TWELVE));
       const categories = await fetch(`${CAT_FOOD}`);
       const categoriesList = await categories.json();
-      // setCatList(categoriesList);
       console.log(categoriesList, catName);
       setMealsCatList(categoriesList.meals.slice(0, FIVE));
       setMealsArray(true);
@@ -83,6 +83,10 @@ function ProviderPrimary({ children }) {
     setMealsCatList,
     drinksCatList,
     setDrinksCatList,
+    selectedCategory,
+    setSelectedCategory,
+    recomendation,
+    setRecomendation,
   };
 
   return (
