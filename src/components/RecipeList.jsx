@@ -12,9 +12,7 @@ const RecipeList = ({ list, page }) => (
         >
           <Link
             to={
-              page === 'comidas'
-                ? `/comidas/${item.idMeal}`
-                : `/bebidas/${item.idDrink}`
+              page === 'comidas' ? `/comidas/${item.idMeal}` : `/bebidas/${item.idDrink}`
             }
           >
             <img

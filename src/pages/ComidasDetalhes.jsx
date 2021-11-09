@@ -20,7 +20,7 @@ export default function ComidasDetalhes() {
       await requestAPI(API_DRINK_ALL);
     };
     apiRequest();
-  }, [request, currentId, requestAPI]);
+  }, [currentId, request, requestAPI]);
 
   return (
     <div>
