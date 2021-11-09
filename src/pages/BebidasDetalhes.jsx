@@ -7,8 +7,7 @@ import FetchAPI from '../hooks/FetchAPI';
 import Ingredients from '../components/Ingredients';
 import RecipePhoto from '../components/RecipePhoto';
 import RecipeInstructions from '../components/RecipeInstructions';
-import RecipeRecomendations from './RecipeRecomendations';
-
+import RecipeRecomendations from '../components/RecipeRecomendations';
 
 export default function BebidasDetalhes() {
   const { data, request } = FetchRecipe();

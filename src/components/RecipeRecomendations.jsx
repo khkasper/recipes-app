@@ -46,4 +46,8 @@ const RecipeRecomendations = ({ data }) => {
   );
 };
 
+RecipeRecomendations.propTypes = {
+  data: PropTypes.string.isRequired,
+};
+
 export default RecipeRecomendations;
