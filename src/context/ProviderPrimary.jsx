@@ -26,29 +26,25 @@ function ProviderPrimary({ children }) {
   const [drinksCatList, setDrinksCatList] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [recomendation, setRecomendation] = useState(null);
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     async function getDrinksResults() {
-      const catName = 'drinks';
       const response = await fetch(API_DRINK_ALL);
       const result = await response.json();
-      console.log(result);
       setDrinks(result.drinks.slice(0, TWELVE));
       const categories = await fetch(`${CAT_DRINK}`);
       const categoriesList = await categories.json();
-      console.log(categoriesList, catName);
       setDrinksCatList(categoriesList.drinks.slice(0, FIVE));
       setDrinksArray(true);
     }
     async function getMealsResults() {
-      const catName = 'meals';
       const response = await fetch(API_FOOD_ALL);
       const result = await response.json();
-      console.log(result);
       setMeals(result.meals.slice(0, TWELVE));
       const categories = await fetch(`${CAT_FOOD}`);
       const categoriesList = await categories.json();
-      console.log(categoriesList, catName);
       setMealsCatList(categoriesList.meals.slice(0, FIVE));
       setMealsArray(true);
     }
@@ -87,6 +83,10 @@ function ProviderPrimary({ children }) {
     setSelectedCategory,
     recomendation,
     setRecomendation,
+    data,
+    setData,
+    error,
+    setError,
   };
 
   return (

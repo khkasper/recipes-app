@@ -11,8 +11,6 @@ import {
   TWELVE,
   ALT_1,
   ALT_2,
-  // CAT_DRINK,
-  // CAT_FOOD,
 } from '../services/NoMagicStuff';
 
 export default function HeaderSearchBar() {

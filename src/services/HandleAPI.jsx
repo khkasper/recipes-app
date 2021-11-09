@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import ContextPrimary from '../context/ContextPrimary';
 import {
   API_FOOD,
@@ -11,11 +11,7 @@ let response;
 let result;
 
 export default async function HandleAPI(category) {
-  const PRIMARY = useContext(ContextPrimary);
-  const [isLoading, setIsLoading] = useState(null);
-  const [data, setData] = useState(null);
-  const [error, setError] = useState(null);
-  console.log(isLoading && data && error);
+  const { PRIMARY, setIsLoading, setData, setError } = useContext(ContextPrimary);
 
   try {
     setError(null);
