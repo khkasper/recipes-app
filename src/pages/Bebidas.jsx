@@ -11,7 +11,8 @@ export default function Bebidas() {
   let page = location.pathname;
   page = page.replace('/', '');
   const { setCurrentPage,
-    drinksArray, drinks,
+    drinksArray,
+    drinks,
     drinksCatList } = useContext(ContextPrimary);
   const handlePage = () => setCurrentPage(page);
 

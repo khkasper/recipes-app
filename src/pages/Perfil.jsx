@@ -6,7 +6,6 @@ import Footer from '../components/Footer';
 export default function Perfil() {
   const emailUser = localStorage.getItem('user');
   const user = JSON.parse(emailUser);
-
   const HISTORY = useHistory();
   const clearLocalStorage = () => {
     localStorage.clear();
@@ -17,7 +16,10 @@ export default function Perfil() {
   return (
     <>
       <Header headerTitle="Perfil" showSearchBar={ false } />
-      <h2 data-testid="profile-email">{user.email}</h2>
+      {/* <h1 data-testid="page-title">Perfil</h1> */}
+      <h2 data-testid="profile-email">
+        {localStorage.getItem('user') === null ? '' : user.email }
+      </h2>
       <Link to="/receitas-feitas">
         <button type="button" data-testid="profile-done-btn">Receitas Feitas</button>
       </Link>

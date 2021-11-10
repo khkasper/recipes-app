@@ -10,8 +10,12 @@ export default function Comidas() {
   const location = useLocation();
   let page = location.pathname;
   page = page.replace('/', '');
-  const { setCurrentPage, mealsArray, meals, mealsCatList } = useContext(ContextPrimary);
+  const { setCurrentPage,
+    mealsArray,
+    meals,
+    mealsCatList } = useContext(ContextPrimary);
   const handlePage = () => setCurrentPage(page);
+
   useEffect(() => {
     handlePage();
   });
