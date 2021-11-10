@@ -1,14 +1,15 @@
 import React, { useEffect } from 'react';
-import shareIcon from '../images/shareIcon.svg';
-import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import { ID_FOOD, API_DRINK_ALL } from '../services/NoMagicStuff';
 import FetchRecipe from '../hooks/FetchRecipe';
 import FetchAPI from '../hooks/FetchAPI';
 import Ingredients from '../components/Ingredients';
-import RecipePhoto from '../components/RecipePhoto';
-import RecipeInstructions from '../components/RecipeInstructions';
-import RecipeRecomendations from '../components/RecipeRecomendations';
-import RecipeVideo from '../components/RecipeVideo';
+import RecipePhoto from '../components/mini/RecipePhoto';
+import RecipeInstructions from '../components/mini/RecipeInstructions';
+import RecipeRecomendations from '../components/mini/RecipeRecomendations';
+import RecipeVideo from '../components/mini/RecipeVideo';
+import RecipeStart from '../components/mini/RecipeStart';
+import RecipeShare from '../components/mini/RecipeShare';
+import RecipeFavorite from '../components/mini/RecipeFavorite';
 
 export default function ComidasDetalhes() {
   const { data, request } = FetchRecipe();
@@ -32,12 +33,8 @@ export default function ComidasDetalhes() {
               src={ data.meals[0].strMealThumb }
               alt={ data.meals[0].strMeal }
             />
-            <button data-testid="share-btn" type="button">
-              <img src={ shareIcon } alt="share" />
-            </button>
-            <button data-testid="favorite-btn" type="button">
-              <img src={ whiteHeartIcon } alt="favorite" />
-            </button>
+            <RecipeShare />
+            <RecipeFavorite />
             <div data-testid="recipe-category">
               { data.meals[0].strCategory }
             </div>
@@ -48,9 +45,7 @@ export default function ComidasDetalhes() {
               alt={ data.meals[0].strMeal }
             />
             <RecipeRecomendations data={ all } />
-            <button data-testid="start-recipe-btn" type="button">
-              Iniciar Receita
-            </button>
+            <RecipeStart path={ `/comidas/${data.meals[0].idMeal}/in-progress` } />
           </>
         )
       }

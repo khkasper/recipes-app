@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import ContextPrimary from '../context/ContextPrimary';
-import { SIX } from '../services/NoMagicStuff';
+import ContextPrimary from '../../context/ContextPrimary';
+import { SIX } from '../../services/NoMagicStuff';
 
 const RecipeRecomendations = ({ data }) => {
   const PRIMARY = useContext(ContextPrimary);
