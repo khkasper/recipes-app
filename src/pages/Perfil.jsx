@@ -1,6 +1,5 @@
 import React from 'react';
-import { useHistory } from 'react-router';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
@@ -17,7 +16,10 @@ export default function Perfil() {
   return (
     <>
       <Header headerTitle="Perfil" showSearchBar={ false } />
-      <h2 data-testid="profile-email">{user.email}</h2>
+      {/* <h1 data-testid="page-title">Perfil</h1> */}
+      <h2 data-testid="profile-email">
+        {localStorage.getItem('user') === null ? '' : user.email }
+      </h2>
       <Link to="/receitas-feitas">
         <button type="button" data-testid="profile-done-btn">Receitas Feitas</button>
       </Link>
