@@ -1,9 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
+const arrayIngredients = [];
+const arrayMeasures = [];
+
+const checkAll = (what, key) => {
+  if (key.includes('strIngredient')
+  && ((what !== null) && (what !== ' ') && (what !== ''))) {
+    arrayIngredients.push(what);
+  }
+  if (key.includes('strMeasure')
+  && checkAllwhat) {
+    arrayMeasures.push(what);
+  }
+};
+
 const Ingredients = ({ data, progress }) => {
   const [ingredientList, setIngredientList] = useState([]);
-  const [ingredientChecked, setIngredientChecked] = useState([]);
+  // const [ingredientChecked, setIngredientChecked] = useState([]);
   const currentPage = window.location.pathname.split('/')[1];
   let page;
   let prPage;
@@ -14,27 +28,18 @@ const Ingredients = ({ data, progress }) => {
     prPage = 'ingredient-name-and-measure';
   }
 
-  // const handleChange = (item) => {
-
-  // };
-
   useEffect(() => {
     if (data !== null) {
-      const arrayIngredients = [];
-      const arrayMeasures = [];
       Object.keys(data[page][0]).forEach((key) => {
-        if (key.includes('strIngredient')
-          && data[page][0][key] !== null
-          && data[page][0][key] !== ''
-          && data[page][0][key] !== ' ') {
-          arrayIngredients.push(data[page][0][key]);
-        }
-        if (key.includes('strMeasure')
-          && data[page][0][key] !== null
-          && data[page][0][key] !== ''
-          && data[page][0][key] !== ' ') {
-          arrayMeasures.push(data[page][0][key]);
-        }
+        checkAll(data[page][0][key], key);
+        // if (key.includes('strIngredient')
+        //   && checkAll(data[page][0][key])) {
+        //   arrayIngredients.push(data[page][0][key]);
+        // }
+        // if (key.includes('strMeasure')
+        // && checkBlank(data[page][0][key])) {
+        //   arrayMeasures.push(data[page][0][key]);
+        // }
       });
       const list = arrayMeasures.map((ms, i) => `${ms} - ${arrayIngredients[i]}`);
       setIngredientList(list);
