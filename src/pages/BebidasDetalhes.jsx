@@ -40,7 +40,10 @@ export default function BebidasDetalhes() {
             <Ingredients data={ data } progress="no" />
             <RecipeInstructions instructions={ data.drinks[0].strInstructions } />
             <RecipeRecomendations data={ all } />
-            <RecipeStart path={ `/bebidas/${data.drinks[0].idDrink}/in-progress` } />
+            <RecipeStart
+              path={ `/bebidas/${data.drinks[0].idDrink}/in-progress` }
+              rec={ data.drinks[0].strDrink }
+            />
           </>
         )
       }

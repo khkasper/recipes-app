@@ -45,7 +45,10 @@ export default function ComidasDetalhes() {
               alt={ data.meals[0].strMeal }
             />
             <RecipeRecomendations data={ all } />
-            <RecipeStart path={ `/comidas/${data.meals[0].idMeal}/in-progress` } />
+            <RecipeStart
+              path={ `/comidas/${data.meals[0].idMeal}/in-progress` }
+              rec={ data.meals[0].strMeal }
+            />
           </>
         )
       }

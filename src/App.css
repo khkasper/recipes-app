@@ -59,6 +59,10 @@
   width: 50px;
 }
 
+.ingredient-item {
+  text-decoration: line-through solid black;
+}
+
 @keyframes shake {
 
   0% {
