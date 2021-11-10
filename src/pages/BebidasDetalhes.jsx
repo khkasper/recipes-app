@@ -37,7 +37,7 @@ export default function BebidasDetalhes() {
             <div data-testid="recipe-category">
               { `${data.drinks[0].strCategory} - ${data.drinks[0].strAlcoholic}` }
             </div>
-            <Ingredients data={ data } />
+            <Ingredients data={ data } progress="no" />
             <RecipeInstructions instructions={ data.drinks[0].strInstructions } />
             <RecipeRecomendations data={ all } />
             <RecipeStart path={ `/bebidas/${data.drinks[0].idDrink}/in-progress` } />

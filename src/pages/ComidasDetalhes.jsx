@@ -38,7 +38,7 @@ export default function ComidasDetalhes() {
             <div data-testid="recipe-category">
               { data.meals[0].strCategory }
             </div>
-            <Ingredients data={ data } />
+            <Ingredients data={ data } progress="no" />
             <RecipeInstructions instructions={ data.meals[0].strInstructions } />
             <RecipeVideo
               url={ data.meals[0].strYoutube }

@@ -1,11 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const RecipeVideo = ({ url, alt }) => (
-  <div data-testid="video">
-    <iframe width="420" height="315" src={ url } title={ alt } />
-  </div>
-);
+const RecipeVideo = ({ url, alt }) => {
+  const embed = () => {
+    const info = url.split('v=');
+    const link = `http://www.youtube.com/embed/${info[1]}`;
+    return link;
+  };
+
+  return (
+    <iframe
+      data-testid="video"
+      width="420"
+      height="180"
+      src={ embed() }
+      title={ alt }
+      frameBorder="0"
+    />
+  );
+};
 
 RecipeVideo.propTypes = {
   url: PropTypes.string.isRequired,

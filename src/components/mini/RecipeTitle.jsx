@@ -9,7 +9,7 @@ const RecipeTitle = ({ page }) => (
 );
 
 RecipeTitle.propTypes = {
-  path: PropTypes.string.isRequired,
+  page: PropTypes.string.isRequired,
 };
 
 export default RecipeTitle;
