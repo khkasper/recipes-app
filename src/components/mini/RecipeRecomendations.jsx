@@ -36,7 +36,7 @@ const RecipeRecomendations = ({ data }) => {
                   PRIMARY.recomendation === 'drinks' ? item.strDrink : item.strMeal
                 }
               />
-              <h3 data-testid={ `${index}-recomendation-tile` }>
+              <h3 data-testid={ `${index}-recomendation-title` }>
                 { PRIMARY.recomendation === 'drinks' ? item.strDrink : item.strMeal }
               </h3>
             </div>

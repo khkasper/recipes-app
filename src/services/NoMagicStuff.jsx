@@ -17,6 +17,8 @@ export const CAT_FOOD = 'https://www.themealdb.com/api/json/v1/1/list.php?c=list
 export const CAT_DRINK = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list';
 export const ID_DRINK = 'https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=';
 export const ID_FOOD = 'https://www.themealdb.com/api/json/v1/1/lookup.php?i=';
+export const FOOD_RANDOM = 'https://www.themealdb.com/api/json/v1/1/random.php';
+export const DRINK_RANDOM = 'https://www.thecocktaildb.com/api/json/v1/1/random.php';
 
 export function CURRENT_PAGE() {
   return window.location.pathname.split('/')[1];
