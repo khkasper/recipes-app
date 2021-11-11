@@ -101,8 +101,9 @@
   align-items: stretch;
   display: flex;
   flex-direction: row;
+  overflow-y: hidden;
 }
 
 .recomendationCard img {
-  width: 350px;
+  width: 250px;
 }

@@ -33,6 +33,7 @@ function ProviderPrimary({ children }) {
   const [recomendation, setRecomendation] = useState(null);
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
+  const [ingredient, setIngredient] = useState([]);
 
   useEffect(() => {
     async function getDrinksResults() {
@@ -93,6 +94,8 @@ function ProviderPrimary({ children }) {
     setRecomendation,
     data,
     setData,
+    ingredient,
+    setIngredient,
     error,
     setError,
   };

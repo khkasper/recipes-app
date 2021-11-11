@@ -34,7 +34,7 @@ export default function BebidasDetalhes() {
   return (
     <div>
       {
-        data !== null && (
+        data && data.length && (
           <>
             <p data-testid="recipe-title">{ data.drinks[0].strDrink }</p>
             <RecipePhoto
