@@ -19,7 +19,7 @@ const RecipeRecomendations = ({ data }) => {
   const rec = PRIMARY.recomendation;
 
   return (
-    <div>
+    <div className="recomendationCard">
       {
         (PRIMARY[rec] !== null) && (PRIMARY.recomendation !== null)
           && ((PRIMARY[rec]).slice(0, SIX).map((item, index) => (

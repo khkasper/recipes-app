@@ -96,3 +96,13 @@
     transform: rotate(-10deg);
   }
 }
+
+.recomendationCard {
+  align-items: stretch;
+  display: flex;
+  flex-direction: row;
+}
+
+.recomendationCard img {
+  width: 350px;
+}

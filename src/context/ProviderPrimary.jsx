@@ -9,6 +9,11 @@ import {
   CAT_DRINK,
   CAT_FOOD,
 } from '../services/NoMagicStuff';
+import {
+  setLCFavoritesRecipes,
+  setLCMealsToken,
+  setLCCocktailsToken,
+} from '../localStorage/initial';
 
 function ProviderPrimary({ children }) {
   const [email, setEmail] = useState('');
@@ -50,6 +55,9 @@ function ProviderPrimary({ children }) {
     }
     getDrinksResults();
     getMealsResults();
+    setLCFavoritesRecipes();
+    setLCMealsToken();
+    setLCCocktailsToken();
   }, []);
 
   const contextValue = {
