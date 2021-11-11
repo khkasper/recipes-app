@@ -50,13 +50,21 @@
   width: 100%;
 }
 
-.footer {
+.footer, .start-recipe-btn {
   bottom: 0;
   position: fixed;
 }
 
 .img-card {
   width: 50px;
+}
+
+.ingredient-item {
+  text-decoration: line-through solid black;
+}
+
+.done-recipe-img {
+  height: 100px;
 }
 
 @keyframes shake {
