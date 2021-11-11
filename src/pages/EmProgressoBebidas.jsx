@@ -8,6 +8,7 @@ import RecipeShare from '../components/mini/RecipeShare';
 import FetchRecipe from '../hooks/FetchRecipe';
 import FetchAPI from '../hooks/FetchAPI';
 import { ID_DRINK, API_FOOD_ALL } from '../services/NoMagicStuff';
+import RecipeFinish from '../components/mini/RecipeFinish';
 
 export default function EmProgressoComidas() {
   const [drinkDetails, setDrinkDetails] = useState(null);
@@ -43,16 +44,14 @@ export default function EmProgressoComidas() {
               { drinkDetails.strDrink }
             </h2>
             <RecipeShare />
-            <RecipeFavorite />
+            <RecipeFavorite data={ data.drinks[0] } />
             <p data-testid="recipe-category">
               { `${drinkDetails.strCategory} - ${drinkDetails.strAlcoholic}` }
             </p>
             <Ingredients data={ data } progress="pr" />
             <RecipeInstructions instructions={ drinkDetails.strInstructions } />
             <RecipeRecomendations data={ all } />
-            <button data-testid="finish-recipe-btn" type="button">
-              Finalizar
-            </button>
+            <RecipeFinish data={ data.drinks[0] } />
           </>
         )
       }

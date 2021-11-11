@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ID_FOOD, API_DRINK_ALL } from '../services/NoMagicStuff';
 import FetchRecipe from '../hooks/FetchRecipe';
 import FetchAPI from '../hooks/FetchAPI';
@@ -12,6 +12,7 @@ import RecipeShare from '../components/mini/RecipeShare';
 import RecipeFavorite from '../components/mini/RecipeFavorite';
 
 export default function ComidasDetalhes() {
+  const [startButton, setStartButton] = useState(true);
   const { data, request } = FetchRecipe();
   const { all, requestAPI } = FetchAPI();
   const currentId = window.location.pathname.split('/')[2];
@@ -22,6 +23,15 @@ export default function ComidasDetalhes() {
     };
     apiRequest();
   }, [currentId, request, requestAPI]);
+  useEffect(() => {
+    if (localStorage.doneRecipes) {
+      const localKey = JSON.parse(localStorage.getItem('doneRecipes'));
+      console.log(localKey);
+      localKey.forEach((recipe) => {
+        if (recipe.id === currentId) { setStartButton(false); }
+      });
+    }
+  }, [currentId]);
 
   return (
     <div>
@@ -34,7 +44,7 @@ export default function ComidasDetalhes() {
               alt={ data.meals[0].strMeal }
             />
             <RecipeShare />
-            <RecipeFavorite />
+            <RecipeFavorite data={ data.meals[0] } />
             <div data-testid="recipe-category">
               { data.meals[0].strCategory }
             </div>
@@ -45,10 +55,7 @@ export default function ComidasDetalhes() {
               alt={ data.meals[0].strMeal }
             />
             <RecipeRecomendations data={ all } />
-            <RecipeStart
-              path={ `/comidas/${data.meals[0].idMeal}/in-progress` }
-              rec={ data.meals[0].strMeal }
-            />
+            { startButton && <RecipeStart /> }
           </>
         )
       }

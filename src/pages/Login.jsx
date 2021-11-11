@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import ContextPrimary from '../context/ContextPrimary';
+import { setLCUser, setLCMealsToken, setLCCocktailsToken } from '../localStorage/initial';
 
 export default function Login() {
   const {
@@ -39,12 +40,9 @@ export default function Login() {
   };
 
   const handleSubmit = () => {
-    const user = {
-      email,
-    };
-    localStorage.setItem('mealsToken', '1');
-    localStorage.setItem('cocktailsToken', '1');
-    localStorage.setItem('user', JSON.stringify(user));
+    setLCUser(email);
+    setLCMealsToken();
+    setLCCocktailsToken();
     routeChange();
     setCurrentPage('comidas');
   };

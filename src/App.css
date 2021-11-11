@@ -63,6 +63,10 @@
   text-decoration: line-through solid black;
 }
 
+.done-recipe-img {
+  height: 100px;
+}
+
 @keyframes shake {
 
   0% {
@@ -91,4 +95,14 @@
   100% {
     transform: rotate(-10deg);
   }
+}
+
+.recomendationCard {
+  align-items: stretch;
+  display: flex;
+  flex-direction: row;
+}
+
+.recomendationCard img {
+  width: 350px;
 }

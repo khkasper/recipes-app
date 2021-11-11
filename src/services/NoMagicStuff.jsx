@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 export const MAX_SEARCH_LENGTH_FL = 1;
 export const FIRST_LETTER = 'first-letter';
 export const INGREDIENTS = 'ingredients';
@@ -20,6 +22,10 @@ export function CURRENT_PAGE() {
   return window.location.pathname.split('/')[1];
 }
 
+export function CURRENT_ID() {
+  return window.location.pathname.split('/')[2];
+}
+
 export function drinksMeals() {
   const current = window.location.pathname.split('/')[1];
   if (current === 'comidas') {
@@ -34,3 +40,105 @@ export function DTI_INGR(prog) {
   }
   return 'ingredient-name-and-measure';
 }
+
+// CONSTANTES PARA LOCAL STORAGE
+export function LS_IN_PROGRESS_RECIPES() {
+  const current = window.location.pathname.split('/')[1];
+  if (current === 'comidas') {
+    return 'meals';
+  }
+  return 'cocktails';
+}
+
+export function RECIPE({ data }) {
+  const origin = window.location.pathname.split('/')[1];
+  const id = window.location.pathname.split('/')[2];
+  const singular = origin === 'comidas' ? 'comida' : 'bebida';
+
+  const recipeLS = {
+    id,
+    type: singular,
+    area: singular === 'comida' ? data.strArea : '',
+    category: data.strCategory,
+    alcoholicOrNot: singular === 'bebida' ? data.strAlcoholic : '',
+    name: singular === 'comida' ? data.strMeal : data.strDrink,
+    image: singular === 'comida' ? data.strMealThumb : data.strDrinkThumb,
+  };
+  return (recipeLS);
+}
+RECIPE.propTypes = {
+  data: PropTypes.string.isRequired,
+};
+
+export function DONE_RECIPE({ data }) {
+  const origin = window.location.pathname.split('/')[1];
+  const id = window.location.pathname.split('/')[2];
+  const singular = origin === 'comidas' ? 'comida' : 'bebida';
+  const current = new Date();
+  const hoje = `${current.getDate()}/${current.getMonth() + 1}/${current.getFullYear()}`;
+
+  const recipeLS = [
+    {
+      id,
+      type: singular,
+      area: singular === 'comida' ? data.strArea : '',
+      category: data.strCategory,
+      alcoholicOrNot: singular === 'bebida' ? data.strAlcoholic : '',
+      name: singular === 'comida' ? data.strMeal : data.strDrink,
+      image: singular === 'comida' ? data.strMealThumb : data.strDrinkThumb,
+      doneDate: hoje,
+      tags: data.strTags,
+    },
+  ];
+  return (recipeLS);
+}
+DONE_RECIPE.propTypes = {
+  data: PropTypes.string.isRequired,
+};
+
+// localStorage
+// O uso de localStorage é necessário para que as informações não se percam caso a pessoa atualize a página. O correto é usar os valores para iniciar sua store ou seu context.
+
+// No localStorage do navegador:
+
+// a chave mealsToken deve conter a seguinte estrutura:
+// 1
+// a chave cocktailsToken deve conter a seguinte estrutura:
+// 1
+// a chave user deve conter a seguinte estrutura:
+// {
+//     email: email-da-pessoa
+// }
+// a chave doneRecipes deve conter a seguinte estrutura:
+// [{
+//     id: id-da-receita,
+//     type: comida-ou-bebida,
+//     area: area-da-receita-ou-texto-vazio,
+//     category: categoria-da-receita-ou-texto-vazio,
+//     alcoholicOrNot: alcoholic-ou-non-alcoholic-ou-texto-vazio,
+//     name: nome-da-receita,
+//     image: imagem-da-receita,
+//     doneDate: quando-a-receita-foi-concluida,
+//     tags: array-de-tags-da-receita-ou-array-vazio
+// }]
+// a chave favoriteRecipes deve conter a seguinte estrutura:
+// [{
+//     id: id-da-receita,
+//     type: comida-ou-bebida,
+//     area: area-da-receita-ou-texto-vazio,
+//     category: categoria-da-receita-ou-texto-vazio,
+//     alcoholicOrNot: alcoholic-ou-non-alcoholic-ou-texto-vazio,
+//     name: nome-da-receita,
+//     image: imagem-da-receita
+// }]
+// a chave inProgressRecipes deve conter a seguinte estrutura:
+// {
+//     cocktails: {
+//         id-da-bebida: [lista-de-ingredientes-utilizados],
+//         ...
+//     },
+//     meals: {
+//         id-da-comida: [lista-de-ingredientes-utilizados],
+//         ...
+//     }
+// }
