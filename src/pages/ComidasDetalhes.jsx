@@ -37,7 +37,7 @@ export default function ComidasDetalhes() {
   return (
     <div>
       {
-        data !== null && (
+        data && data !== null && (
           <>
             <p data-testid="recipe-title">{ data.meals[0].strMeal }</p>
             <RecipePhoto

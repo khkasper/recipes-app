@@ -8,6 +8,8 @@ import {
   FIVE,
   CAT_DRINK,
   CAT_FOOD,
+  LIST_ALL_DRINKS_INGREDIENTS,
+  LIST_ALL_MEALS_INGREDIENTS,
 } from '../services/NoMagicStuff';
 import {
   setLCFavoritesRecipes,
@@ -38,6 +40,8 @@ function ProviderPrimary({ children }) {
   const [doneRecipe, setDoneRecipe] = useState([]);
   const [doneRecipes, setDoneRecipes] = useState([]);
   const [filterDone, setFilterDone] = useState('All');
+  const [mealsIngredients, setMealsIngredients] = useState([]);
+  const [drinksIngredients, setDrinksIngredients] = useState([]);
 
   useEffect(() => {
     async function getDrinksResults() {
@@ -48,6 +52,9 @@ function ProviderPrimary({ children }) {
       const categoriesList = await categories.json();
       setDrinksCatList(categoriesList.drinks.slice(0, FIVE));
       setDrinksArray(true);
+      const ingredientsList = await fetch(LIST_ALL_DRINKS_INGREDIENTS);
+      const resultIngredients = await ingredientsList.json();
+      setDrinksIngredients(resultIngredients.drinks.slice(0, TWELVE));
     }
     async function getMealsResults() {
       const response = await fetch(API_FOOD_ALL);
@@ -57,6 +64,9 @@ function ProviderPrimary({ children }) {
       const categoriesList = await categories.json();
       setMealsCatList(categoriesList.meals.slice(0, FIVE));
       setMealsArray(true);
+      const ingredientsList = await fetch(LIST_ALL_MEALS_INGREDIENTS);
+      const resultIngredients = await ingredientsList.json();
+      setMealsIngredients(resultIngredients.meals.slice(0, TWELVE));
     }
     getDrinksResults();
     getMealsResults();
@@ -109,6 +119,10 @@ function ProviderPrimary({ children }) {
     setDoneRecipes,
     filterDone,
     setFilterDone,
+    mealsIngredients,
+    setMealsIngredients,
+    drinksIngredients,
+    setDrinksIngredients,
   };
 
   return (

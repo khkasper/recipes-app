@@ -22,7 +22,8 @@ export default function BebidasDetalhes() {
       await requestAPI(API_FOOD_ALL);
     };
     apiRequest();
-  }, [currentId, request, requestAPI]);
+    console.log(data);
+  }, [currentId, request, requestAPI, data]);
 
   useEffect(() => {
     if (localStorage.doneRecipes) {
@@ -36,7 +37,7 @@ export default function BebidasDetalhes() {
   return (
     <div>
       {
-        data !== null && (
+        data && (data.length || data !== null) && (
           <>
             <p data-testid="recipe-title">{ data.drinks[0].strDrink }</p>
             <RecipePhoto
