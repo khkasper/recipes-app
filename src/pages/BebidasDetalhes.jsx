@@ -15,6 +15,7 @@ export default function BebidasDetalhes() {
   const { data, request } = FetchRecipe();
   const { all, requestAPI } = FetchAPI();
   const currentId = window.location.pathname.split('/')[2];
+
   useEffect(() => {
     const apiRequest = async () => {
       await request(`${ID_DRINK}${currentId}`);
@@ -22,6 +23,7 @@ export default function BebidasDetalhes() {
     };
     apiRequest();
   }, [currentId, request, requestAPI]);
+
   useEffect(() => {
     if (localStorage.doneRecipes) {
       const localKey = JSON.parse(localStorage.getItem('doneRecipes'));
@@ -34,7 +36,7 @@ export default function BebidasDetalhes() {
   return (
     <div>
       {
-        data && data.length && (
+        data !== null && (
           <>
             <p data-testid="recipe-title">{ data.drinks[0].strDrink }</p>
             <RecipePhoto

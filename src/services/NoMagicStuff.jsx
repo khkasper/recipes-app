@@ -80,19 +80,17 @@ export function DONE_RECIPE({ data }) {
   const current = new Date();
   const hoje = `${current.getDate()}/${current.getMonth() + 1}/${current.getFullYear()}`;
 
-  const recipeLS = [
-    {
-      id,
-      type: singular,
-      area: singular === 'comida' ? data.strArea : '',
-      category: data.strCategory,
-      alcoholicOrNot: singular === 'bebida' ? data.strAlcoholic : '',
-      name: singular === 'comida' ? data.strMeal : data.strDrink,
-      image: singular === 'comida' ? data.strMealThumb : data.strDrinkThumb,
-      doneDate: hoje,
-      tags: data.strTags,
-    },
-  ];
+  const recipeLS = {
+    id,
+    type: singular,
+    area: singular === 'comida' ? data.strArea : '',
+    category: data.strCategory,
+    alcoholicOrNot: singular === 'bebida' ? data.strAlcoholic : '',
+    name: singular === 'comida' ? data.strMeal : data.strDrink,
+    image: singular === 'comida' ? data.strMealThumb : data.strDrinkThumb,
+    doneDate: hoje,
+    tags: data.strTags,
+  };
   return (recipeLS);
 }
 DONE_RECIPE.propTypes = {

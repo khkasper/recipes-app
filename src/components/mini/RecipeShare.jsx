@@ -10,8 +10,8 @@ const RecipeShare = ({ cat, id, i }) => {
   const currentPage = CURRENT_PAGE();
   let linkCopy = (initialLink.toString().replace('/in-progress', ''));
   let datatestid = 'share-btn';
-  if (currentPage === ('receitas-favoritas' || 'receitas-feitas')) {
-    datatestid = i.concat('-horizontal-share-btn');
+  if ((currentPage === 'receitas-favoritas') || (currentPage === 'receitas-feitas')) {
+    datatestid = `${i}-horizontal-share-btn`;
     linkCopy = linkCopy.replace(currentPage, `${cat}/${id}`);
   }
 

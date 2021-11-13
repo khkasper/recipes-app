@@ -2,37 +2,54 @@ import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import RecipeDoneCard from '../components/mini/RecipeDoneCard';
 
-// const filterRecipe = (recipe, typ) => {
-//   const list = Object.values(recipe);
-//   if ((list.includes(typ)) || (typ === 'All')) return true;
-//   return false;
-// };
-
 export default function ReceitasFeitas() {
-  // const { location } = useHistory();
   const [doneRecipes, setDoneRecipes] = useState(null);
   const [filterDone, setFilterDone] = useState('All');
-  const [local, setLocal] = useState(null);
 
-  useEffect(() => {
-    const getMyLocalStorage = JSON.parse(localStorage.getItem('doneRecipes')) || [];
-    if (getMyLocalStorage !== null) {
-      const doneR = JSON.parse(localStorage.doneRecipes.doneRec);
-      setDoneRecipes((doneR));
+  const handleFilter = (value) => {
+    switch (value) {
+    case 'comida':
+
+      setFilterDone('comida');
+      break;
+    case 'bebida':
+      setFilterDone('bebida');
+      break;
+    default:
+      setFilterDone('All');
+      break;
     }
-  }, [setDoneRecipes]);
+  };
 
   useEffect(() => {
-    if (local) {
-      console.log(doneRecipes);
+    const getMyLocalStorage = (JSON.parse(localStorage.getItem('doneRecipes')));
+    console.log(getMyLocalStorage);
+    if (getMyLocalStorage !== null) {
       if (filterDone === 'All') {
-        setDoneRecipes(JSON.parse(localStorage.doneRecipes));
+        setDoneRecipes(getMyLocalStorage);
       } else {
-        setDoneRecipes(JSON.parse(localStorage.doneRecipes)
-          .filterDone((recipe) => recipe.type === filterDone));
+        // console.log(filterDone);
+        setDoneRecipes((getMyLocalStorage)
+          .filter((recipe) => recipe.type === filterDone));
       }
     }
-  }, [local, filterDone, doneRecipes, setFilterDone, setLocal]);
+  }, [filterDone, setDoneRecipes]);
+
+  // useEffect(() => {
+  //   // console.log(doneRecipes);
+  //   const getMyLocalStorage = JSON.parse(localStorage.getItem('doneRecipes'));
+  //   if (getMyLocalStorage !== null) {
+  //     const doneR = JSON.parse(localStorage.doneRecipes);
+  //     setDoneRecipes((doneR));
+  //   }
+  //   if (filterDone === 'All') {
+  //     setDoneRecipes(JSON.parse(localStorage.doneRecipes));
+  //   } else {
+  //     console.log(filterDone);
+  //     setDoneRecipes(JSON.parse(localStorage.doneRecipes)
+  //       .filterDone((recipe) => recipe.type === filterDone));
+  //   }
+  // }, [filterDone, doneRecipes, setFilterDone]);
 
   return (
     <div>
@@ -42,7 +59,7 @@ export default function ReceitasFeitas() {
           type="button"
           data-testid="filter-by-all-btn"
           value="All"
-          // onClick={ (e) => { filterRecipe(e.target.value); } }
+          onClick={ () => { handleFilter('All'); } }
         >
           All
         </button>
@@ -50,7 +67,7 @@ export default function ReceitasFeitas() {
           type="button"
           data-testid="filter-by-food-btn"
           value="comida"
-          // onClick={ (e) => { filterRecipe(e.target.value); } }
+          onClick={ () => { handleFilter('comida'); } }
         >
           Comidas
         </button>
@@ -59,7 +76,7 @@ export default function ReceitasFeitas() {
           type="button"
           data-testid="filter-by-drink-btn"
           value="bebida"
-          // onClick={ (e) => { filterRecipe(e.target.value); } }
+          onClick={ () => { handleFilter('bebida'); } }
         >
           Bebidas
         </button>

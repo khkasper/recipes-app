@@ -13,6 +13,7 @@ import {
   setLCFavoritesRecipes,
   setLCMealsToken,
   setLCCocktailsToken,
+  setLCFilter,
 } from '../localStorage/initial';
 
 function ProviderPrimary({ children }) {
@@ -34,6 +35,9 @@ function ProviderPrimary({ children }) {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [ingredient, setIngredient] = useState([]);
+  const [doneRecipe, setDoneRecipe] = useState([]);
+  const [doneRecipes, setDoneRecipes] = useState([]);
+  const [filterDone, setFilterDone] = useState('All');
 
   useEffect(() => {
     async function getDrinksResults() {
@@ -59,6 +63,7 @@ function ProviderPrimary({ children }) {
     setLCFavoritesRecipes();
     setLCMealsToken();
     setLCCocktailsToken();
+    setLCFilter();
   }, []);
 
   const contextValue = {
@@ -98,6 +103,12 @@ function ProviderPrimary({ children }) {
     setIngredient,
     error,
     setError,
+    doneRecipe,
+    setDoneRecipe,
+    doneRecipes,
+    setDoneRecipes,
+    filterDone,
+    setFilterDone,
   };
 
   return (
