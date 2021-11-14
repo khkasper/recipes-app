@@ -42,7 +42,7 @@ const RecipeShare = ({ cat, id, i }) => {
 RecipeShare.propTypes = {
   cat: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
-  i: PropTypes.number.isRequired,
+  i: PropTypes.string.isRequired,
 };
 
 export default RecipeShare;

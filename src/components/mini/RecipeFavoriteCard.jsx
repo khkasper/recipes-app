@@ -32,35 +32,35 @@ const RecipeFavoriteCard = ({ recipes }) => {
                   alt={ r.name }
                   className="favorite-recipe-img"
                 />
-                <p data-testid={ `${i}-horizontal-top-text` }>
-                  { r.area.length > 0 ? `${r.area} - ` : ''}
-                  { r.alcoholicOrNot.length > 0 ? `${r.alcoholicOrNot} - ` : ''}
-                  { r.category }
-                </p>
-                <p data-testid={ `${i}-${r.category}-horizontal-tag` }>
-                  { r.category }
-                </p>
-                <Link to={ `/${r.type}s/${r.id}` }>
-                  <span
-                    data-testid={ `${i}-horizontal-name` }
-                    className="favorite-card-name"
-                  >
-                    { r.name }
-                  </span>
-                </Link>
-                {
-                  stringToArray(r.tags) === null ? ''
-                    : (stringToArray(r.tags)).map((tag) => (
-                      <span
-                        key={ tag }
-                        data-testid={ `${i}-${tag}-horizontal-tag` }
-                        className="favorite-card-tag"
-                      >
-                        { tag }
-                      </span>
-                    ))
-                }
               </Link>
+              <p data-testid={ `${i}-horizontal-top-text` }>
+                { r.area.length > 0 ? `${r.area} - ` : ''}
+                { r.alcoholicOrNot.length > 0 ? `${r.alcoholicOrNot} - ` : ''}
+                { r.category }
+              </p>
+              <p data-testid={ `${i}-${r.category}-horizontal-tag` }>
+                { r.category }
+              </p>
+              <Link to={ `/${r.type}s/${r.id}` }>
+                <span
+                  data-testid={ `${i}-horizontal-name` }
+                  className="favorite-card-name"
+                >
+                  { r.name }
+                </span>
+              </Link>
+              {
+                stringToArray(r.tags) === null ? ''
+                  : (stringToArray(r.tags)).map((tag) => (
+                    <span
+                      key={ tag }
+                      data-testid={ `${i}-${tag}-horizontal-tag` }
+                      className="favorite-card-tag"
+                    >
+                      { tag }
+                    </span>
+                  ))
+              }
               <RecipeFavorite data={ r } i={ i } />
               <RecipeShare
                 cat={

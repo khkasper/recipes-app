@@ -18,6 +18,11 @@ const RecipeFavorite = ({ data, i }) => {
     datatestid = `${i}-horizontal-favorite-btn`;
   }
 
+  let favIcon = favorite ? blackHeartIcon : whiteHeartIcon;
+  if (currentPage === 'receitas-favoritas') {
+    favIcon = blackHeartIcon;
+  }
+
   const handleClick = () => {
     const recipe = RECIPE({ data });
     // if (!localStorage.favoriteRecipes) {
@@ -36,9 +41,8 @@ const RecipeFavorite = ({ data, i }) => {
       console.log(localKey);
       const index = localKey.indexOf(recipe);
       console.log(index);
-
-      // localKey.splice(index, 1);
-      // localStorage.setItem('favoriteRecipes', JSON.stringify(localKey));
+      localKey.splice(index, 1);
+      localStorage.setItem('favoriteRecipes', JSON.stringify(localKey));
       setFavorite(false);
     }
     // }
@@ -62,7 +66,7 @@ const RecipeFavorite = ({ data, i }) => {
     >
       <img
         data-testid={ datatestid }
-        src={ favorite ? blackHeartIcon : whiteHeartIcon }
+        src={ favIcon }
         alt="favorite"
       />
     </button>
