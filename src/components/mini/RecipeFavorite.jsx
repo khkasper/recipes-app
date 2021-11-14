@@ -13,7 +13,7 @@ const RecipeFavorite = ({ data, i }) => {
   const [favorite, setFavorite] = useState(false);
   const id = CURRENT_ID();
   const currentPage = CURRENT_PAGE();
-  let datatestid = 'share-btn';
+  let datatestid = 'favorite-btn';
   if (currentPage === 'receitas-favoritas') {
     datatestid = `${i}-horizontal-favorite-btn`;
   }
@@ -38,11 +38,8 @@ const RecipeFavorite = ({ data, i }) => {
       );
       setFavorite(true);
     } else {
-      console.log(localKey);
-      const index = localKey.indexOf(recipe);
-      console.log(index);
-      localKey.splice(index, 1);
-      localStorage.setItem('favoriteRecipes', JSON.stringify(localKey));
+      const newLocalKey = localKey.filter((rec) => rec !== recipe);
+      localStorage.setItem('favoriteRecipes', JSON.stringify(newLocalKey));
       setFavorite(false);
     }
     // }
