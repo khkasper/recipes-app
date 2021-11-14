@@ -4,34 +4,44 @@ import whiteHeartIcon from '../../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../../images/blackHeartIcon.svg';
 import {
   CURRENT_ID,
+  CURRENT_PAGE,
   RECIPE,
 } from '../../services/NoMagicStuff';
 
 // const RecipeFavorite = ({ path }) => (
-const RecipeFavorite = ({ data }) => {
+const RecipeFavorite = ({ data, i }) => {
   const [favorite, setFavorite] = useState(false);
   const id = CURRENT_ID();
+  const currentPage = CURRENT_PAGE();
+  let datatestid = 'share-btn';
+  if (currentPage === 'receitas-favoritas') {
+    datatestid = `${i}-horizontal-favorite-btn`;
+  }
 
   const handleClick = () => {
     const recipe = RECIPE({ data });
-    if (!localStorage.favoriteRecipes) {
-      localStorage.setItem('favoriteRecipes', JSON.stringify([recipe]));
+    // if (!localStorage.favoriteRecipes) {
+    //   localStorage.setItem('favoriteRecipes', JSON.stringify([recipe]));
+    //   setFavorite(true);
+    // } else {
+    const localKey = JSON.parse(localStorage.getItem('favoriteRecipes'));
+
+    if (!favorite) {
+      localStorage.setItem(
+        'favoriteRecipes',
+        JSON.stringify([...localKey, recipe]),
+      );
       setFavorite(true);
     } else {
-      const localKey = JSON.parse(localStorage.getItem('favoriteRecipes'));
-      if (!favorite) {
-        localStorage.setItem(
-          'favoriteRecipes',
-          JSON.stringify([...localKey, recipe]),
-        );
-        setFavorite(true);
-      } else {
-        const index = localKey.indexOf(recipe);
-        localKey.splice(index, 1);
-        localStorage.setItem('favoriteRecipes', JSON.stringify(localKey));
-        setFavorite(false);
-      }
+      console.log(localKey);
+      const index = localKey.indexOf(recipe);
+      console.log(index);
+
+      // localKey.splice(index, 1);
+      // localStorage.setItem('favoriteRecipes', JSON.stringify(localKey));
+      setFavorite(false);
     }
+    // }
   };
 
   useEffect(() => {
@@ -51,7 +61,7 @@ const RecipeFavorite = ({ data }) => {
       onClick={ () => handleClick() }
     >
       <img
-        data-testid="favorite-btn"
+        data-testid={ datatestid }
         src={ favorite ? blackHeartIcon : whiteHeartIcon }
         alt="favorite"
       />
@@ -60,7 +70,8 @@ const RecipeFavorite = ({ data }) => {
 };
 
 RecipeFavorite.propTypes = {
-  data: PropTypes.string.isRequired,
+  data: PropTypes.shape([]).isRequired,
+  i: PropTypes.string.isRequired,
 };
 
 export default RecipeFavorite;

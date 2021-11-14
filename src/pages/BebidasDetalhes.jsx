@@ -48,7 +48,7 @@ export default function BebidasDetalhes() {
               id={ data.drinks[0].idDrink }
               i="0"
             />
-            <RecipeFavorite data={ data.drinks[0] } />
+            <RecipeFavorite data={ data.drinks[0] } i={ data.drinks[0].idDrink } />
             <div data-testid="recipe-category">
               { `${data.drinks[0].strCategory} - ${data.drinks[0].strAlcoholic}` }
             </div>

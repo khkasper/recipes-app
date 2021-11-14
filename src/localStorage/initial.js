@@ -5,6 +5,20 @@ export function setLCFavoritesRecipes() {
   }
 }
 
+export function setLCFavoritesRecipesFiltered() {
+  if (localStorage.getItem('favoriteRecipes') === null) {
+    const FilteredFavoriteRecipes = [];
+    localStorage.setItem('favFilteredRecipes', JSON.stringify(FilteredFavoriteRecipes));
+  }
+}
+
+export function setLCDoneRecipesFiltered() {
+  if (localStorage.getItem('favoriteRecipes') === null) {
+    const FilteredDoneRecipes = [];
+    localStorage.setItem('doneFilteredRecipes', JSON.stringify(FilteredDoneRecipes));
+  }
+}
+
 export function setLCUser(email) {
   const user = { email };
   if (localStorage.getItem('user') === null) {

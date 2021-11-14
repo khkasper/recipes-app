@@ -49,7 +49,7 @@ export default function ComidasDetalhes() {
               id={ data.meals[0].idMeal }
               i="0"
             />
-            <RecipeFavorite data={ data.meals[0] } />
+            <RecipeFavorite data={ data.meals[0] } i={ data.meals[0].strMeal } />
             <div data-testid="recipe-category">
               { data.meals[0].strCategory }
             </div>

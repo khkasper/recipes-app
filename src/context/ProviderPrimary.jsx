@@ -16,6 +16,8 @@ import {
   setLCMealsToken,
   setLCCocktailsToken,
   setLCFilter,
+  setLCFavoritesRecipesFiltered,
+  setLCDoneRecipesFiltered,
 } from '../localStorage/initial';
 
 function ProviderPrimary({ children }) {
@@ -74,6 +76,8 @@ function ProviderPrimary({ children }) {
     setLCMealsToken();
     setLCCocktailsToken();
     setLCFilter();
+    setLCFavoritesRecipesFiltered();
+    setLCDoneRecipesFiltered();
   }, []);
 
   const contextValue = {
