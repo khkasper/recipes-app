@@ -23,3 +23,9 @@ export function setLCCocktailsToken() {
     localStorage.setItem('cocktailsToken', '1');
   }
 }
+
+export function setLCFilter() {
+  if (localStorage.getItem('filter') === null) {
+    localStorage.setItem('filter', 'All');
+  }
+}

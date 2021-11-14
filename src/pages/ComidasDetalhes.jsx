@@ -16,6 +16,7 @@ export default function ComidasDetalhes() {
   const { data, request } = FetchRecipe();
   const { all, requestAPI } = FetchAPI();
   const currentId = window.location.pathname.split('/')[2];
+
   useEffect(() => {
     const apiRequest = async () => {
       await request(`${ID_FOOD}${currentId}`);
@@ -23,10 +24,10 @@ export default function ComidasDetalhes() {
     };
     apiRequest();
   }, [currentId, request, requestAPI]);
+
   useEffect(() => {
     if (localStorage.doneRecipes) {
       const localKey = JSON.parse(localStorage.getItem('doneRecipes'));
-      console.log(localKey);
       localKey.forEach((recipe) => {
         if (recipe.id === currentId) { setStartButton(false); }
       });
@@ -36,7 +37,7 @@ export default function ComidasDetalhes() {
   return (
     <div>
       {
-        data !== null && (
+        data && data !== null && (
           <>
             <p data-testid="recipe-title">{ data.meals[0].strMeal }</p>
             <RecipePhoto

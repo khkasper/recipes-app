@@ -67,6 +67,10 @@
   height: 100px;
 }
 
+.recipe-done-card-tag, .recipe-done-card-name {
+  padding-right: 5px;
+}
+
 @keyframes shake {
 
   0% {
