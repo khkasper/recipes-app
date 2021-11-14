@@ -17,15 +17,6 @@ export default function BebidasDetalhes() {
   const currentId = window.location.pathname.split('/')[2];
 
   useEffect(() => {
-    const apiRequest = async () => {
-      await request(`${ID_DRINK}${currentId}`);
-      await requestAPI(API_FOOD_ALL);
-    };
-    apiRequest();
-    console.log(data);
-  }, [currentId, request, requestAPI, data]);
-
-  useEffect(() => {
     if (localStorage.doneRecipes) {
       const localKey = JSON.parse(localStorage.getItem('doneRecipes'));
       localKey.forEach((recipe) => {
@@ -34,17 +25,29 @@ export default function BebidasDetalhes() {
     }
   }, [currentId]);
 
+  useEffect(() => {
+    const apiRequest = async () => {
+      await request(`${ID_DRINK}${currentId}`);
+      await requestAPI(API_FOOD_ALL);
+    };
+    apiRequest();
+  }, [currentId, request, requestAPI]);
+
   return (
     <div>
       {
-        data && (data.length || data !== null) && (
+        (data !== null) && ((data.drinks).length > 0) && (
           <>
             <p data-testid="recipe-title">{ data.drinks[0].strDrink }</p>
             <RecipePhoto
               src={ data.drinks[0].strDrinkThumb }
               alt={ data.drinks[0].strDrink }
             />
-            <RecipeShare />
+            <RecipeShare
+              cat="bebidas"
+              id={ data.drinks[0].idDrink }
+              i="0"
+            />
             <RecipeFavorite data={ data.drinks[0] } />
             <div data-testid="recipe-category">
               { `${data.drinks[0].strCategory} - ${data.drinks[0].strAlcoholic}` }

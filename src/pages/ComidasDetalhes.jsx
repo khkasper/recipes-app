@@ -37,14 +37,18 @@ export default function ComidasDetalhes() {
   return (
     <div>
       {
-        data && data !== null && (
+        (data !== null) && ((data.meals).length > 0) && (
           <>
             <p data-testid="recipe-title">{ data.meals[0].strMeal }</p>
             <RecipePhoto
               src={ data.meals[0].strMealThumb }
               alt={ data.meals[0].strMeal }
             />
-            <RecipeShare />
+            <RecipeShare
+              cat="comidas"
+              id={ data.meals[0].idMeal }
+              i="0"
+            />
             <RecipeFavorite data={ data.meals[0] } />
             <div data-testid="recipe-category">
               { data.meals[0].strCategory }
