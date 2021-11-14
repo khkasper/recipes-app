@@ -17,7 +17,7 @@ const RecipeShare = ({ cat, id, i }) => {
 
   const copyToClipBoard = async () => {
     try {
-      await navigator.clipboard.writeText(linkCopy);
+      await window.navigator.clipboard.writeText(linkCopy);
       setCopySuccess('Link copiado!');
     } catch (err) {
       setCopySuccess('Puxa, não consegui copiar...');
