@@ -44,7 +44,7 @@ export default function EmProgressoComidas() {
             <h2 data-testid="recipe-title">
               { mealDetails.strMeal }
             </h2>
-            <RecipeShare />
+            <RecipeShare cat="comidas" id={ mealDetails.idMeal } i="0" />
             <RecipeFavorite data={ data.meals[0] } />
             <p data-testid="recipe-category">
               { mealDetails.strCategory }

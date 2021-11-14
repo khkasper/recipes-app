@@ -43,7 +43,7 @@ export default function EmProgressoComidas() {
             <h2 data-testid="recipe-title">
               { drinkDetails.strDrink }
             </h2>
-            <RecipeShare />
+            <RecipeShare cat="bebidas" id={ drinkDetails.idDrink } i="0" />
             <RecipeFavorite data={ data.drinks[0] } />
             <p data-testid="recipe-category">
               { `${drinkDetails.strCategory} - ${drinkDetails.strAlcoholic}` }
