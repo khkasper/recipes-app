@@ -31,14 +31,12 @@ const RecipeFavoriteCard = ({ recipes }) => {
                   src={ r.image }
                   alt={ r.name }
                   className="favorite-recipe-img"
+                  width="150px;"
                 />
               </Link>
               <p data-testid={ `${i}-horizontal-top-text` }>
                 { r.area.length > 0 ? `${r.area} - ` : ''}
                 { r.alcoholicOrNot.length > 0 ? `${r.alcoholicOrNot} - ` : ''}
-                { r.category }
-              </p>
-              <p data-testid={ `${i}-${r.category}-horizontal-tag` }>
                 { r.category }
               </p>
               <Link to={ `/${r.type}s/${r.id}` }>
@@ -49,7 +47,7 @@ const RecipeFavoriteCard = ({ recipes }) => {
                   { r.name }
                 </span>
               </Link>
-              {
+              {/* {
                 stringToArray(r.tags) === null ? ''
                   : (stringToArray(r.tags)).map((tag) => (
                     <span
@@ -60,7 +58,7 @@ const RecipeFavoriteCard = ({ recipes }) => {
                       { tag }
                     </span>
                   ))
-              }
+              } */}
               <RecipeFavorite data={ r } i={ i } />
               <RecipeShare
                 cat={
