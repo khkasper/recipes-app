@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import PropTypes from 'prop-types';
+import ContextPrimary from '../../context/ContextPrimary';
 import whiteHeartIcon from '../../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../../images/blackHeartIcon.svg';
 import {
@@ -8,16 +9,16 @@ import {
   RECIPE,
 } from '../../services/NoMagicStuff';
 
-// const RecipeFavorite = ({ path }) => (
 const RecipeFavorite = ({ data, i }) => {
   const [favorite, setFavorite] = useState(false);
+  const { favorites, setFavorites } = useContext(ContextPrimary);
   const id = CURRENT_ID();
   const currentPage = CURRENT_PAGE();
   let datatestid = 'favorite-btn';
   if (currentPage === 'receitas-favoritas') {
     datatestid = `${i}-horizontal-favorite-btn`;
   }
-
+  const localKey = JSON.parse(localStorage.getItem('favoriteRecipes'));
   let favIcon = favorite ? blackHeartIcon : whiteHeartIcon;
   if (currentPage === 'receitas-favoritas') {
     favIcon = blackHeartIcon;
@@ -25,36 +26,38 @@ const RecipeFavorite = ({ data, i }) => {
 
   const handleClick = () => {
     const recipe = RECIPE({ data });
-    // if (!localStorage.favoriteRecipes) {
-    //   localStorage.setItem('favoriteRecipes', JSON.stringify([recipe]));
-    //   setFavorite(true);
-    // } else {
-    const localKey = JSON.parse(localStorage.getItem('favoriteRecipes'));
-
-    if (!favorite) {
+    if (!(JSON.parse(localStorage.getItem('favoriteRecipes')))) {
+      localStorage.setItem('favoriteRecipes', JSON.stringify([recipe]));
+      setFavorite(true);
+    }
+    if (!(JSON.parse(localStorage.getItem('favoriteRecipes')))
+      .find((rec) => rec.id === recipe.id)) {
       localStorage.setItem(
         'favoriteRecipes',
         JSON.stringify([...localKey, recipe]),
       );
       setFavorite(true);
     } else {
-      const newLocalKey = localKey.filter((rec) => rec !== recipe);
+      console.log(data);
+      console.log(typeof (JSON.parse(localStorage.getItem('favoriteRecipes'))));
+      const newLocalKey = (JSON.parse(localStorage.getItem('favoriteRecipes')))
+        .filter((rec) => rec.id !== recipe.id);
+      console.log(newLocalKey);
       localStorage.setItem('favoriteRecipes', JSON.stringify(newLocalKey));
       setFavorite(false);
     }
-    // }
+    setFavorites(JSON.parse(localStorage.getItem('favoriteRecipes')));
   };
 
   useEffect(() => {
-    if (localStorage.favoriteRecipes) {
-      const localKey = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    if (JSON.parse(localStorage.getItem('favoriteRecipes'))) {
       localKey.forEach((recipe) => {
         if (recipe.id === id) {
           setFavorite(true);
         }
       });
     }
-  }, [id]);
+  }, [localKey, id]);
 
   return (
     <button

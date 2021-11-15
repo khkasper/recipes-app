@@ -44,6 +44,7 @@ function ProviderPrimary({ children }) {
   const [filterDone, setFilterDone] = useState('All');
   const [mealsIngredients, setMealsIngredients] = useState([]);
   const [drinksIngredients, setDrinksIngredients] = useState([]);
+  const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
     async function getDrinksResults() {
@@ -127,6 +128,8 @@ function ProviderPrimary({ children }) {
     setMealsIngredients,
     drinksIngredients,
     setDrinksIngredients,
+    favorites,
+    setFavorites,
   };
 
   return (

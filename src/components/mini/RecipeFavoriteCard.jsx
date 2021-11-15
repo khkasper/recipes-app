@@ -34,7 +34,7 @@ const RecipeFavoriteCard = ({ recipes }) => (
               className="recipe-area-cat"
             >
               { r.area.length > 0 ? `${r.area}` : ''}
-              { r.alcoholicOrNot.length > 0 ? ` - ${r.alcoholicOrNot} - ` : ''}
+              { r.alcoholicOrNot.length > 0 ? ` - ${r.alcoholicOrNot} - ` : ' - '}
               { r.category }
             </p>
             <div className="d-flex flex-row justify-content-center">
