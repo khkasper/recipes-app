@@ -1,6 +1,5 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import ContextPrimary from '../../context/ContextPrimary';
 import whiteHeartIcon from '../../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../../images/blackHeartIcon.svg';
 import {
@@ -11,7 +10,7 @@ import {
 
 const RecipeFavorite = ({ data, i }) => {
   const [favorite, setFavorite] = useState(false);
-  const { favorites, setFavorites } = useContext(ContextPrimary);
+  const [favorites, setFavorites] = useState([]);
   const id = CURRENT_ID();
   const currentPage = CURRENT_PAGE();
   let datatestid = 'favorite-btn';
@@ -57,7 +56,7 @@ const RecipeFavorite = ({ data, i }) => {
         }
       });
     }
-  }, [localKey, id]);
+  }, [favorites, localKey, id]);
 
   return (
     <button
