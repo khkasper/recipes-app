@@ -9,7 +9,7 @@ const Header = (props) => {
   const { headerTitle, showSearchBar } = props;
   const [searchBar, setSearchBar] = useState(false);
   return (
-    <div>
+    <div className="top-header">
       <Link
         to="/perfil"
       >

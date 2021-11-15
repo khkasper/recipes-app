@@ -1,15 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-// const RecipeFavorite = ({ path }) => (
-const RecipeTitle = ({ page }) => (
-  <h2 data-testid="recipe-title">
-    { page === 'comidas' ? mealDetails.strMeal : drinkDetails.strDrink }
+const RecipeTitle = ({ title }) => (
+  <h2 data-testid="recipe-title" className="recipe-title">
+    { title }
   </h2>
 );
 
 RecipeTitle.propTypes = {
-  page: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 export default RecipeTitle;

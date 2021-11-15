@@ -40,18 +40,21 @@ const Ingredients = ({ data, progress }) => {
 
   return (
     <div>
-      <ul>
+      <ul
+        className={ progress === 'pr' ? 'ul-progress' : 'ul-details' }
+      >
         {
           ingredientList.map((ingredient, index) => (
             <li
               key={ index }
               data-testid={ `${index}-${testid}` }
+              className="ingredient-li"
             >
-              { ingredient }
               {
                 (progress === 'pr') && (
                   <label
                     htmlFor={ `ingredient-${index}` }
+                    className="checkbox-ingredient-label"
                   >
                     <input
                       type="checkbox"
@@ -63,6 +66,7 @@ const Ingredients = ({ data, progress }) => {
                   </label>
                 )
               }
+              { ingredient }
             </li>
           ))
         }

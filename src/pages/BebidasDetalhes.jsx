@@ -9,6 +9,8 @@ import RecipeRecomendations from '../components/mini/RecipeRecomendations';
 import RecipeStart from '../components/mini/RecipeStart';
 import RecipeShare from '../components/mini/RecipeShare';
 import RecipeFavorite from '../components/mini/RecipeFavorite';
+import RecipeCategory from '../components/mini/RecipeCategory';
+import RecipeTitle from '../components/mini/RecipeTitle';
 
 export default function BebidasDetalhes() {
   const [startButton, setStartButton] = useState(true);
@@ -34,11 +36,11 @@ export default function BebidasDetalhes() {
   }, [currentId, request, requestAPI]);
 
   return (
-    <div>
+    <div className="recipe-detail">
       {
-        (data !== null) && ((data.drinks).length > 0) && (
+        (data !== null) && (data.drinks.length) && (
           <>
-            <p data-testid="recipe-title">{ data.drinks[0].strDrink }</p>
+            <RecipeTitle title={ data.drinks[0].strDrink } />
             <RecipePhoto
               src={ data.drinks[0].strDrinkThumb }
               alt={ data.drinks[0].strDrink }
@@ -49,9 +51,9 @@ export default function BebidasDetalhes() {
               i="0"
             />
             <RecipeFavorite data={ data.drinks[0] } i={ data.drinks[0].idDrink } />
-            <div data-testid="recipe-category">
-              { `${data.drinks[0].strCategory} - ${data.drinks[0].strAlcoholic}` }
-            </div>
+            <RecipeCategory
+              cat={ `${data.drinks[0].strCategory} - ${data.drinks[0].strAlcoholic}` }
+            />
             <Ingredients data={ data } progress="no" />
             <RecipeInstructions instructions={ data.drinks[0].strInstructions } />
             <RecipeRecomendations data={ all } />

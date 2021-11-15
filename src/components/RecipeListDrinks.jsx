@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 const RecipeListDrinks = ({ list }) => (
-  <div>
+  <div className="recipe-list">
     {
       list.map((item, index) => (
         <div
           data-testid={ `${index}-recipe-card` }
           key={ index }
+          className="food-card-list"
         >
           <Link
             to={ `/bebidas/${item.idDrink}` }
@@ -17,8 +18,12 @@ const RecipeListDrinks = ({ list }) => (
               data-testid={ `${index}-card-img` }
               alt={ item.strDrink }
               src={ item.strDrinkThumb }
+              className="food-card-img"
             />
-            <span data-testid={ `${index}-card-name` }>
+            <span
+              data-testid={ `${index}-card-name` }
+              className="food-card-name"
+            >
               { item.strDrink }
             </span>
           </Link>

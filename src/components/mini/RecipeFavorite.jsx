@@ -60,6 +60,7 @@ const RecipeFavorite = ({ data, i }) => {
     <button
       type="button"
       onClick={ () => handleClick() }
+      className="favorite-button"
     >
       <img
         data-testid={ datatestid }

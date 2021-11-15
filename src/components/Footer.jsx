@@ -6,7 +6,7 @@ import mealIcon from '../images/mealIcon.svg';
 
 export default function Footer() {
   return (
-    <div data-testid="footer" className="footer">
+    <div data-testid="footer" className="bottom-footer footer">
       <Link
         to="/bebidas"
       >
