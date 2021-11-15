@@ -31,36 +31,33 @@ const RecipeDoneCard = ({ recipes }) => {
                   alt={ r.name }
                   className="done-recipe-img"
                 />
-                <p data-testid={ `${i}-horizontal-top-text` }>
-                  { r.area.length > 0 ? `${r.area} - ` : ''}
-                  { r.alcoholicOrNot.length > 0 ? `${r.alcoholicOrNot} - ` : ''}
-                  { r.category }
-                </p>
-                <p data-testid={ `${i}-${r.category}-horizontal-tag` }>
-                  { r.category }
-                </p>
-                <Link to={ `/${r.type}s/${r.id}` }>
-                  <span
-                    data-testid={ `${i}-horizontal-name` }
-                    className="recipe-done-card-name"
-                  >
-                    { r.name }
-                  </span>
-                </Link>
-                <p data-testid={ `${i}-horizontal-done-date` }>{ r.doneDate }</p>
-                {
-                  stringToArray(r.tags) === null ? ''
-                    : (stringToArray(r.tags)).map((tag) => (
-                      <span
-                        key={ tag }
-                        data-testid={ `${i}-${tag}-horizontal-tag` }
-                        className="recipe-done-card-tag"
-                      >
-                        { tag }
-                      </span>
-                    ))
-                }
               </Link>
+              <Link to={ `/${r.type}s/${r.id}` }>
+                <span
+                  data-testid={ `${i}-horizontal-name` }
+                  className="food-card-name"
+                >
+                  { r.name }
+                </span>
+              </Link>
+              <p data-testid={ `${i}-horizontal-top-text` } className="recipe-area-cat">
+                { r.area.length > 0 ? `${r.area}` : ''}
+                { r.alcoholicOrNot.length > 0 ? ` - ${r.alcoholicOrNot} - ` : ' - '}
+                { r.category }
+              </p>
+              <p data-testid={ `${i}-horizontal-done-date` }>{ r.doneDate }</p>
+              {
+                stringToArray(r.tags) === null ? ''
+                  : (stringToArray(r.tags)).map((tag) => (
+                    <span
+                      key={ tag }
+                      data-testid={ `${i}-${tag}-horizontal-tag` }
+                      className="recipe-done-card-tag"
+                    >
+                      { tag }
+                    </span>
+                  ))
+              }
               <RecipeShare
                 cat={
                   r.alcoholicOrNot.length > 0 ? 'bebidas' : 'comidas'

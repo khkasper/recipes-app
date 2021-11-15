@@ -19,30 +19,34 @@ const RecipeFavoriteCard = ({ recipes }) => (
                 src={ r.image }
                 alt={ r.name }
                 className="favorite-recipe-img"
-                width="150px;"
               />
             </Link>
-            <p data-testid={ `${i}-horizontal-top-text` }>
-              { r.area.length > 0 ? `${r.area} - ` : ''}
-              { r.alcoholicOrNot.length > 0 ? `${r.alcoholicOrNot} - ` : ''}
-              { r.category }
-            </p>
             <Link to={ `/${r.type}s/${r.id}` }>
               <span
                 data-testid={ `${i}-horizontal-name` }
-                className="favorite-card-name"
+                className="food-card-name"
               >
                 { r.name }
               </span>
             </Link>
-            <RecipeFavorite data={ r } i={ i } />
-            <RecipeShare
-              cat={
-                r.alcoholicOrNot.length > 0 ? 'bebidas' : 'comidas'
-              }
-              id={ r.id }
-              i={ i }
-            />
+            <p
+              data-testid={ `${i}-horizontal-top-text` }
+              className="recipe-area-cat"
+            >
+              { r.area.length > 0 ? `${r.area}` : ''}
+              { r.alcoholicOrNot.length > 0 ? ` - ${r.alcoholicOrNot} - ` : ''}
+              { r.category }
+            </p>
+            <div className="d-flex flex-row justify-content-center">
+              <RecipeShare
+                cat={
+                  r.alcoholicOrNot.length > 0 ? 'bebidas' : 'comidas'
+                }
+                id={ r.id }
+                i={ i }
+              />
+              <RecipeFavorite data={ r } i={ i } />
+            </div>
           </div>
         ))
       )

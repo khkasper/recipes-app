@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Acme&family=Cinzel:wght@400;500;600;700;800;900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,400;1,700;1,900&family=Noto+Sans+Display:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Viga&display=swap') ;
+@import url('https://fonts.googleapis.com/css2?family=Acme&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,400;1,700;1,900&family=Noto+Sans+Display:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Viga&display=swap') ;
 
 main {
   font-family: Noto Sans Display , sans-serif;
@@ -143,10 +143,6 @@ body {
   text-decoration: line-through solid black;
 }
 
-.done-recipe-img {
-  height: 100px;
-}
-
 .recipe-done-card-tag, .recipe-done-card-name {
   padding-right: 5px;
 }
@@ -177,7 +173,7 @@ body {
   width: 100%;
 }
 
-.food-card-img {
+.food-card-img, .favorite-recipe-img, .done-recipe-img {
   border-radius: 8px 8px 0 0;
   width: 100%;
 }
@@ -195,12 +191,20 @@ body {
   width: 100%;
 }
 
+.recipe-area-cat {
+  font-size: 0.9em;
+  font-style: italic;
+  margin: 3px 3px 0;
+  text-align: center;
+}
+
 .top-header, .bottom-footer {
   align-items: center;
   background-color: #ffc400;
   display: flex;
   font-family: Lato , sans-serif;
   justify-content: space-between;
+  margin-bottom: 10px;
   padding: 10px;
 }
 
@@ -237,7 +241,7 @@ body {
 .favorite-button, .share-button {
   background-color: transparent;
   border: none;
-  padding: 10px 15px 10px 0;
+  padding: 0 15px 0 0;
 }
 
 .copy-ok, .copy-fail {
@@ -276,10 +280,10 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-top: 10px;
+  margin: 10px 0;
 }
 
-.category-button {
+.category-button, .filter-recipes-button {
   background-color: #a3a3a3;
   border: none;
   border-radius: 5px;
@@ -289,7 +293,7 @@ body {
   padding: 3px 8px;
 }
 
-.category-button:hover {
+.category-button:hover, .filter-recipes-button:hover {
   background-color: #4d4d4d;
 }
 
@@ -315,4 +319,17 @@ body {
 .finish-div {
   margin-top: 10px;
   width: 100%;
+}
+
+.page-title {
+  align-self: center;
+  font-size: 1.8em;
+  font-weight: 600;
+}
+
+.favorite-card, .recipes-done-card {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+  text-align: center;
 }

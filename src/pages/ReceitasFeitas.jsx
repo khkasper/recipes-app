@@ -40,12 +40,13 @@ export default function ReceitasFeitas() {
   return (
     <div>
       <Header headerTitle="Receitas Feitas" showSearchBar={ false } />
-      <div>
+      <div className="category-bar">
         <button
           type="button"
           data-testid="filter-by-all-btn"
           value="All"
           onClick={ () => { handleFilter('All'); } }
+          className="filter-recipes-button"
         >
           All
         </button>
@@ -54,6 +55,7 @@ export default function ReceitasFeitas() {
           data-testid="filter-by-food-btn"
           value="comida"
           onClick={ () => { handleFilter('comida'); } }
+          className="filter-recipes-button"
         >
           Comidas
         </button>
@@ -63,6 +65,7 @@ export default function ReceitasFeitas() {
           data-testid="filter-by-drink-btn"
           value="bebida"
           onClick={ () => { handleFilter('bebida'); } }
+          className="filter-recipes-button"
         >
           Bebidas
         </button>
