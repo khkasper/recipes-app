@@ -6,6 +6,7 @@ import { CURRENT_PAGE } from '../../services/NoMagicStuff';
 // https://stackoverflow.com/questions/39501289/in-reactjs-how-to-copy-text-to-clipboard
 const RecipeShare = ({ cat, id, i }) => {
   const [copySuccess, setCopySuccess] = useState('');
+  const [copyClass, setCopyClass] = useState('copy-fail');
   const initialLink = window.location;
   const currentPage = CURRENT_PAGE();
   let linkCopy = (initialLink.toString().replace('/in-progress', ''));
@@ -17,10 +18,12 @@ const RecipeShare = ({ cat, id, i }) => {
 
   const copyToClipBoard = async () => {
     try {
-      await navigator.clipboard.writeText(linkCopy);
+      await window.navigator.clipboard.writeText(linkCopy);
       setCopySuccess('Link copiado!');
+      setCopyClass('copy-ok');
     } catch (err) {
       setCopySuccess('Puxa, não consegui copiar...');
+      setCopyClass('copy-fail');
     }
   };
 
@@ -28,12 +31,16 @@ const RecipeShare = ({ cat, id, i }) => {
     <button
       type="button"
       onClick={ () => copyToClipBoard() }
+      className="share-button"
     >
-      { copySuccess }
+      <span className={ copyClass }>
+        { copySuccess }
+      </span>
       <img
         src={ shareIcon }
         alt="share"
         data-testid={ datatestid }
+        className={ `share-button-img ${copyClass}` }
       />
     </button>
   );

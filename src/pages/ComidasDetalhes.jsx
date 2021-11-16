@@ -10,6 +10,8 @@ import RecipeVideo from '../components/mini/RecipeVideo';
 import RecipeStart from '../components/mini/RecipeStart';
 import RecipeShare from '../components/mini/RecipeShare';
 import RecipeFavorite from '../components/mini/RecipeFavorite';
+import RecipeCategory from '../components/mini/RecipeCategory';
+import RecipeTitle from '../components/mini/RecipeTitle';
 
 export default function ComidasDetalhes() {
   const [startButton, setStartButton] = useState(true);
@@ -35,20 +37,22 @@ export default function ComidasDetalhes() {
   }, [currentId]);
 
   return (
-    <div>
+    <div className="recipe-detail">
       {
-        data && data !== null && (
+        (data !== null) && ((data.meals).length) && (
           <>
-            <p data-testid="recipe-title">{ data.meals[0].strMeal }</p>
+            <RecipeTitle title={ data.meals[0].strMeal } />
             <RecipePhoto
               src={ data.meals[0].strMealThumb }
               alt={ data.meals[0].strMeal }
             />
-            <RecipeShare />
-            <RecipeFavorite data={ data.meals[0] } />
-            <div data-testid="recipe-category">
-              { data.meals[0].strCategory }
-            </div>
+            <RecipeShare
+              cat="comidas"
+              id={ data.meals[0].idMeal }
+              i="0"
+            />
+            <RecipeFavorite data={ data.meals[0] } i={ data.meals[0].strMeal } />
+            <RecipeCategory cat={ data.meals[0].strCategory } />
             <Ingredients data={ data } progress="no" />
             <RecipeInstructions instructions={ data.meals[0].strInstructions } />
             <RecipeVideo

@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 
 const RecipeInstructions = ({ instructions }) => (
   <div>
-    <p data-testid="instructions">{ instructions}</p>
+    <p data-testid="instructions" className="recipe-instructions">
+      { instructions}
+    </p>
   </div>
 );
 

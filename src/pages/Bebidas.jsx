@@ -2,7 +2,7 @@ import React, { useEffect, useContext } from 'react';
 import { useLocation } from 'react-router-dom';
 import ContextPrimary from '../context/ContextPrimary';
 import Header from '../components/Header';
-import RecipeList from '../components/RecipeList';
+import RecipeListDrinks from '../components/RecipeListDrinks';
 import Footer from '../components/Footer';
 import CategoryFilter from '../components/CategoryFilter';
 
@@ -26,7 +26,7 @@ export default function Bebidas() {
       <div className="categories">
         <CategoryFilter list={ drinksCatList } />
       </div>
-      { drinksArray && <RecipeList list={ drinks } page="bebidas" />}
+      { drinksArray && <RecipeListDrinks list={ drinks } page="bebidas" />}
       <Footer />
     </div>
   );

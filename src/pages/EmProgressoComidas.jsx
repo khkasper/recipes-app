@@ -10,6 +10,8 @@ import FetchRecipe from '../hooks/FetchRecipe';
 import FetchAPI from '../hooks/FetchAPI';
 import { ID_FOOD, API_DRINK_ALL } from '../services/NoMagicStuff';
 import RecipeFinish from '../components/mini/RecipeFinish';
+import RecipeTitle from '../components/mini/RecipeTitle';
+import RecipeCategory from '../components/mini/RecipeCategory';
 
 export default function EmProgressoComidas() {
   const [mealDetails, setMealDetails] = useState(null);
@@ -37,18 +39,14 @@ export default function EmProgressoComidas() {
       {
         (mealDetails) && (
           <>
+            <RecipeTitle title={ mealDetails.strMeal } />
             <RecipePhoto
               src={ mealDetails.strMealThumb }
               alt={ mealDetails.strMealThumb }
             />
-            <h2 data-testid="recipe-title">
-              { mealDetails.strMeal }
-            </h2>
-            <RecipeShare />
-            <RecipeFavorite data={ data.meals[0] } />
-            <p data-testid="recipe-category">
-              { mealDetails.strCategory }
-            </p>
+            <RecipeShare cat="comidas" id={ mealDetails.idMeal } i="0" />
+            <RecipeFavorite data={ data.meals[0] } i={ mealDetails.idMeal } />
+            <RecipeCategory cat={ mealDetails.strCategory } />
             <Ingredients data={ data } progress="pr" />
             <RecipeInstructions instructions={ mealDetails.strInstructions } />
             <RecipeVideo

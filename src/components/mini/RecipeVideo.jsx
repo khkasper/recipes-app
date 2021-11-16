@@ -11,7 +11,7 @@ const RecipeVideo = ({ url, alt }) => {
   return (
     <iframe
       data-testid="video"
-      width="420"
+      width="348"
       height="180"
       src={ embed() }
       title={ alt }

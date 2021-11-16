@@ -49,7 +49,9 @@ export default function Login() {
 
   return (
     <div>
-      <label htmlFor="email-input" className="">
+      <p className="mt-5">Preencha seus dados para efetuar login</p>
+      <label htmlFor="email-input" className="form-label ah-input">
+        E-mail
         <input
           type="text"
           id="email-input"
@@ -57,10 +59,11 @@ export default function Login() {
           data-testid="email-input"
           placeholder="Digite seu melhor e-mail"
           onChange={ handleChange }
+          className="form-control"
         />
-        E-mail
       </label>
-      <label htmlFor="password-input" className="">
+      <label htmlFor="password-input" className="form-label ah-input">
+        Senha
         <input
           type="password"
           id="password-input"
@@ -68,17 +71,21 @@ export default function Login() {
           data-testid="password-input"
           placeholder="Digite sua senha"
           onChange={ handleChange }
+          className="form-control"
         />
-        Senha
       </label>
-      <button
-        data-testid="login-submit-btn"
-        type="button"
-        disabled={ loginDisabled }
-        onClick={ handleSubmit }
-      >
-        Entrar
-      </button>
+      <br />
+      <p className="text-center">
+        <button
+          data-testid="login-submit-btn"
+          type="button"
+          disabled={ loginDisabled }
+          onClick={ handleSubmit }
+          className="btn-login"
+        >
+          Entrar
+        </button>
+      </p>
     </div>
   );
 }

@@ -9,21 +9,14 @@ import RecipeRecomendations from '../components/mini/RecipeRecomendations';
 import RecipeStart from '../components/mini/RecipeStart';
 import RecipeShare from '../components/mini/RecipeShare';
 import RecipeFavorite from '../components/mini/RecipeFavorite';
+import RecipeCategory from '../components/mini/RecipeCategory';
+import RecipeTitle from '../components/mini/RecipeTitle';
 
 export default function BebidasDetalhes() {
   const [startButton, setStartButton] = useState(true);
   const { data, request } = FetchRecipe();
   const { all, requestAPI } = FetchAPI();
   const currentId = window.location.pathname.split('/')[2];
-
-  useEffect(() => {
-    const apiRequest = async () => {
-      await request(`${ID_DRINK}${currentId}`);
-      await requestAPI(API_FOOD_ALL);
-    };
-    apiRequest();
-    console.log(data);
-  }, [currentId, request, requestAPI, data]);
 
   useEffect(() => {
     if (localStorage.doneRecipes) {
@@ -34,21 +27,33 @@ export default function BebidasDetalhes() {
     }
   }, [currentId]);
 
+  useEffect(() => {
+    const apiRequest = async () => {
+      await request(`${ID_DRINK}${currentId}`);
+      await requestAPI(API_FOOD_ALL);
+    };
+    apiRequest();
+  }, [currentId, request, requestAPI]);
+
   return (
-    <div>
+    <div className="recipe-detail">
       {
-        data && (data.length || data !== null) && (
+        (data !== null) && (data.drinks.length) && (
           <>
-            <p data-testid="recipe-title">{ data.drinks[0].strDrink }</p>
+            <RecipeTitle title={ data.drinks[0].strDrink } />
             <RecipePhoto
               src={ data.drinks[0].strDrinkThumb }
               alt={ data.drinks[0].strDrink }
             />
-            <RecipeShare />
-            <RecipeFavorite data={ data.drinks[0] } />
-            <div data-testid="recipe-category">
-              { `${data.drinks[0].strCategory} - ${data.drinks[0].strAlcoholic}` }
-            </div>
+            <RecipeShare
+              cat="bebidas"
+              id={ data.drinks[0].idDrink }
+              i="0"
+            />
+            <RecipeFavorite data={ data.drinks[0] } i={ data.drinks[0].idDrink } />
+            <RecipeCategory
+              cat={ `${data.drinks[0].strCategory} - ${data.drinks[0].strAlcoholic}` }
+            />
             <Ingredients data={ data } progress="no" />
             <RecipeInstructions instructions={ data.drinks[0].strInstructions } />
             <RecipeRecomendations data={ all } />

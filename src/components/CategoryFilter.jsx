@@ -56,7 +56,7 @@ const CategoryFilter = ({ list }) => {
     }
   }
   return (
-    <div>
+    <div className="category-bar">
       {
         list.map((item, index) => (
           <button
@@ -65,6 +65,7 @@ const CategoryFilter = ({ list }) => {
             type="button"
             value={ item.strCategory }
             onClick={ (e) => handleAPI(e.target.value) }
+            className="category-button"
           >
             { item.strCategory }
           </button>
@@ -75,6 +76,7 @@ const CategoryFilter = ({ list }) => {
         type="button"
         value="all"
         onClick={ () => handleAPI('all') }
+        className="category-button"
       >
         Todos
       </button>

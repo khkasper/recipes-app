@@ -3,7 +3,12 @@ import PropTypes from 'prop-types';
 
 const RecipePhoto = ({ src, alt }) => (
   <div>
-    <img data-testid="recipe-photo" src={ src } alt={ alt } />
+    <img
+      data-testid="recipe-photo"
+      src={ src }
+      alt={ alt }
+      className="recipe-detail-photo"
+    />
   </div>
 );
 

@@ -22,16 +22,19 @@ const RecipeFinish = ({ data }) => {
     }
   };
   return (
-    <Link to="/receitas-feitas">
-      <button
-        data-testid="finish-recipe-btn"
-        type="button"
-        disabled={ false }
-        onClick={ handleClick }
-      >
-        Finalizar
-      </button>
-    </Link>
+    <div className="finish-div">
+      <Link to="/receitas-feitas">
+        <button
+          data-testid="finish-recipe-btn"
+          type="button"
+          disabled={ false }
+          onClick={ handleClick }
+          className="finish-button"
+        >
+          Finalizar
+        </button>
+      </Link>
+    </div>
   );
 };
 

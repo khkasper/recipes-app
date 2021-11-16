@@ -9,7 +9,7 @@ const Header = (props) => {
   const { headerTitle, showSearchBar } = props;
   const [searchBar, setSearchBar] = useState(false);
   return (
-    <div>
+    <div className="top-header">
       <Link
         to="/perfil"
       >
@@ -19,7 +19,7 @@ const Header = (props) => {
           alt="profileIcon"
         />
       </Link>
-      <h1 data-testid="page-title">{ headerTitle }</h1>
+      <h1 data-testid="page-title" className="page-title">{ headerTitle }</h1>
       { showSearchBar && (
         <button
           type="button"
