@@ -45,6 +45,9 @@ function ProviderPrimary({ children }) {
   const [mealsIngredients, setMealsIngredients] = useState([]);
   const [drinksIngredients, setDrinksIngredients] = useState([]);
   const [favorites, setFavorites] = useState([]);
+  // const [selectedIngredient, setSelectedIngredient] = useState('');
+  // const [allDrinks, setAllDrinks] = useState([]);
+  // const [allMeals, setallMeals] = useState([]);
 
   useEffect(() => {
     async function getDrinksResults() {
@@ -71,6 +74,18 @@ function ProviderPrimary({ children }) {
       const resultIngredients = await ingredientsList.json();
       setMealsIngredients(resultIngredients.meals.slice(0, TWELVE));
     }
+    // async function allDrinksFiltered() {
+    //   const response = await fetch(API_DRINK_ALL);
+    //   const result = await response.json();
+    //   setAllDrinks(result.drinks);
+    //   console.log(result.drinks);
+    // }
+    // async function allMealsFiltered() {
+    //   const response = await fetch(API_FOOD_ALL);
+    //   const result = await response.json();
+    //   setAllDrinks(result.meals);
+    //   console.log(result.meals);
+    // }
     getDrinksResults();
     getMealsResults();
     setLCFavoritesRecipes();
@@ -79,6 +94,8 @@ function ProviderPrimary({ children }) {
     setLCFilter();
     setLCFavoritesRecipesFiltered();
     setLCDoneRecipesFiltered();
+    // allDrinksFiltered();
+    // allMealsFiltered();
   }, []);
 
   const contextValue = {
@@ -130,6 +147,12 @@ function ProviderPrimary({ children }) {
     setDrinksIngredients,
     favorites,
     setFavorites,
+    // selectedIngredient,
+    // setSelectedIngredient,
+    // allDrinks,
+    // setAllDrinks,
+    // allMeals,
+    // setallMeals,
   };
 
   return (
