@@ -31,7 +31,7 @@ export default function BebidasDetalhes() {
     const apiRequest = async () => {
       await request(`${ID_DRINK}${currentId}`);
       await requestAPI(API_FOOD_ALL);
-  };
+    };
     apiRequest();
   }, [currentId, request, requestAPI]);
 
