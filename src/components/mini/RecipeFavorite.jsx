@@ -9,6 +9,7 @@ import {
 } from '../../services/NoMagicStuff';
 
 const RecipeFavorite = ({ data, i }) => {
+  console.log(data);
   const [favorite, setFavorite] = useState(false);
   const [favorites, setFavorites] = useState([]);
   const id = CURRENT_ID();
@@ -28,6 +29,7 @@ const RecipeFavorite = ({ data, i }) => {
     if (!(JSON.parse(localStorage.getItem('favoriteRecipes')))) {
       localStorage.setItem('favoriteRecipes', JSON.stringify([recipe]));
       setFavorite(true);
+      console.log('1 if');
     }
     if (!(JSON.parse(localStorage.getItem('favoriteRecipes')))
       .find((rec) => rec.id === recipe.id)) {
@@ -36,6 +38,7 @@ const RecipeFavorite = ({ data, i }) => {
         JSON.stringify([...localKey, recipe]),
       );
       setFavorite(true);
+      console.log('2 if');
     } else {
       console.log(data);
       console.log(typeof (JSON.parse(localStorage.getItem('favoriteRecipes'))));
@@ -44,6 +47,7 @@ const RecipeFavorite = ({ data, i }) => {
       console.log(newLocalKey);
       localStorage.setItem('favoriteRecipes', JSON.stringify(newLocalKey));
       setFavorite(false);
+      console.log('else');
     }
     setFavorites(JSON.parse(localStorage.getItem('favoriteRecipes')));
   };
