@@ -21,13 +21,14 @@ const RecipeFinish = ({ data }) => {
       localStorage.setItem('doneRecipes', (localKey));
     }
   };
+  const disabled = false;
   return (
     <div className="finish-div">
       <Link to="/receitas-feitas">
         <button
           data-testid="finish-recipe-btn"
           type="button"
-          disabled={ false }
+          disabled={ disabled }
           onClick={ handleClick }
           className="finish-button"
         >

@@ -9,12 +9,23 @@ import CategoryFilter from '../components/CategoryFilter';
 export default function Bebidas() {
   const location = useLocation();
   let page = location.pathname;
+  let drinksOrigin;
   page = page.replace('/', '');
   const { setCurrentPage,
     drinksArray,
     drinks,
-    drinksCatList } = useContext(ContextPrimary);
+    drinksCatList,
+    drinksFilteredByIngredient,
+    selectedDrinkIngredient,
+  } = useContext(ContextPrimary);
+
   const handlePage = () => setCurrentPage(page);
+
+  if (selectedDrinkIngredient !== null) {
+    drinksOrigin = drinksFilteredByIngredient;
+  } else {
+    drinksOrigin = drinks;
+  }
 
   useEffect(() => {
     handlePage();
@@ -26,7 +37,7 @@ export default function Bebidas() {
       <div className="categories">
         <CategoryFilter list={ drinksCatList } />
       </div>
-      { drinksArray && <RecipeListDrinks list={ drinks } page="bebidas" />}
+      { drinksArray && <RecipeListDrinks list={ drinksOrigin } page="bebidas" />}
       <Footer />
     </div>
   );

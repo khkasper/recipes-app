@@ -17,7 +17,11 @@ export default function ExplorarBebidas() {
     <>
       <Header headerTitle="Explorar Bebidas" showSearchBar={ false } />
       <Link to="/explorar/bebidas/ingredientes">
-        <button type="button" data-testid="explore-by-ingredient">
+        <button
+          type="button"
+          data-testid="explore-by-ingredient"
+          className="button-explore"
+        >
           Por Ingredientes
         </button>
       </Link>
@@ -25,6 +29,7 @@ export default function ExplorarBebidas() {
         type="button"
         data-testid="explore-surprise"
         onClick={ fetchApiRandomDrinks }
+        className="button-explore"
       >
         Me Surpreenda!
       </button>

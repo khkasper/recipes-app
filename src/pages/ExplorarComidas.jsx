@@ -17,12 +17,20 @@ export default function ExplorarComidas() {
     <>
       <Header headerTitle="Explorar Comidas" showSearchBar={ false } />
       <Link to="/explorar/comidas/ingredientes">
-        <button type="button" data-testid="explore-by-ingredient">
+        <button
+          type="button"
+          data-testid="explore-by-ingredient"
+          className="button-explore"
+        >
           Por Ingredientes
         </button>
       </Link>
       <Link to="/explorar/comidas/area">
-        <button type="button" data-testid="explore-by-area">
+        <button
+          type="button"
+          data-testid="explore-by-area"
+          className="button-explore"
+        >
           Por Local de Origem
         </button>
       </Link>
@@ -30,6 +38,7 @@ export default function ExplorarComidas() {
         type="button"
         data-testid="explore-surprise"
         onClick={ fetchApiRandomFoods }
+        className="button-explore"
       >
         Me Surpreenda!
       </button>

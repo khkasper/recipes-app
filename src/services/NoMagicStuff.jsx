@@ -24,6 +24,9 @@ export const LIST_ALL_DRINKS_INGREDIENTS = 'https://www.thecocktaildb.com/api/js
 export const LIST_ALL_MEALS_INGREDIENTS = 'https://www.themealdb.com/api/json/v1/1/list.php?i=list';
 export const IMAGE_MEALS = 'https://www.themealdb.com/images/ingredients/';
 export const IMAGE_DRINK = 'https://www.thecocktaildb.com/images/ingredients/';
+export const INGR_FILTER_MEALS = 'https://www.themealdb.com/api/json/v1/1/filter.php?i=';
+export const INGR_FILTER_DRINKS = 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=';
+export const AREA_MEALS = 'https://www.themealdb.com/api/json/v1/1/list.php?a=list';
 
 export function CURRENT_PAGE() {
   return window.location.pathname.split('/')[1];
@@ -39,6 +42,22 @@ export function drinksMeals() {
     return 'meals';
   }
   return 'drinks';
+}
+
+export function drinksMealsExplorePage() {
+  const current = window.location.pathname.split('/')[2];
+  if (current === 'comidas') {
+    return 'meals';
+  }
+  return 'drinks';
+}
+
+export function DB() {
+  const current = window.location.pathname.split('/')[2];
+  if (current === 'comidas') {
+    return 'thecocktaildb';
+  }
+  return 'themealdb';
 }
 
 export function DTI_INGR(prog) {
