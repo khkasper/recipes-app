@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import shareIcon from '../../images/shareIcon.svg';
 import { CURRENT_PAGE } from '../../services/NoMagicStuff';
 
-// https://stackoverflow.com/questions/39501289/in-reactjs-how-to-copy-text-to-clipboard
+const copyClip = require('clipboard-copy');
+
 const RecipeShare = ({ cat, id, i }) => {
   const [copySuccess, setCopySuccess] = useState('');
   const [copyClass, setCopyClass] = useState('copy-fail');
@@ -18,7 +19,7 @@ const RecipeShare = ({ cat, id, i }) => {
 
   const copyToClipBoard = async () => {
     try {
-      await window.navigator.clipboard.writeText(linkCopy);
+      await copyClip(linkCopy);
       setCopySuccess('Link copiado!');
       setCopyClass('copy-ok');
     } catch (err) {
