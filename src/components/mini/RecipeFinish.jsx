@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import ContextPrimary from '../../context/ContextPrimary';
 import {
   DONE_RECIPE,
 } from '../../services/NoMagicStuff';
 
 const RecipeFinish = ({ data }) => {
   const doneRec = DONE_RECIPE({ data });
+  const { disableBtn } = useContext(ContextPrimary);
   const handleClick = () => {
     let localKey = [];
     if (localStorage.getItem('doneRecipes') === null) {
@@ -21,14 +23,14 @@ const RecipeFinish = ({ data }) => {
       localStorage.setItem('doneRecipes', (localKey));
     }
   };
-  const disabled = false;
+
   return (
     <div className="finish-div">
       <Link to="/receitas-feitas">
         <button
           data-testid="finish-recipe-btn"
           type="button"
-          disabled={ disabled }
+          disabled={ disableBtn }
           onClick={ handleClick }
           className="finish-button"
         >

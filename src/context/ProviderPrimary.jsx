@@ -63,6 +63,7 @@ function ProviderPrimary({ children }) {
   const [mealsFilteredByIngredient, setMealsFilteredByIngredient] = useState([]);
   const [selectedArea, setSelectedArea] = useState('All');
   const [mealsFilteredByArea, setMealsFilteredByArea] = useState([]);
+  const [disableBtn, setDisableBtn] = useState(true);
 
   useEffect(() => {
     async function getDrinksResults() {
@@ -178,6 +179,8 @@ function ProviderPrimary({ children }) {
     setSelectedArea,
     mealsFilteredByArea,
     setMealsFilteredByArea,
+    disableBtn,
+    setDisableBtn,
   };
 
   return (
