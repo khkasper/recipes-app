@@ -1,18 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import CheckboxInput from './CheckboxInput';
 import { DTI_INGR, drinksMeals } from '../services/NoMagicStuff';
 
 const Ingredients = ({ data, progress }) => {
   const [ingredientList, setIngredientList] = useState([]);
-  const [ingredientChecked, setIngredientChecked] = useState([]);
   const page = drinksMeals();
   const testid = DTI_INGR(progress);
 
-  const handleChange = (i) => {
-    const updateIngredients = ingredientChecked
-      .map((ingredient, index) => (index === i ? !ingredient : ingredient));
-    setIngredientChecked(updateIngredients);
-  };
   useEffect(() => {
     if (data !== null) {
       const arrayIngredients = [];
@@ -52,18 +47,7 @@ const Ingredients = ({ data, progress }) => {
             >
               {
                 (progress === 'pr') && (
-                  <label
-                    htmlFor={ `ingredient-${index}` }
-                    className="checkbox-ingredient-label"
-                  >
-                    <input
-                      type="checkbox"
-                      id={ `ingredient-${index}` }
-                      name={ `ingredient-${index}` }
-                      className="checkbox-ingredient"
-                      onChange={ () => handleChange(index) }
-                    />
-                  </label>
+                  <CheckboxInput index={ index } ingredient={ ingredient } />
                 )
               }
               { ingredient }

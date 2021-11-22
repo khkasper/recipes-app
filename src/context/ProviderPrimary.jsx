@@ -10,6 +10,7 @@ import {
   CAT_FOOD,
   LIST_ALL_DRINKS_INGREDIENTS,
   LIST_ALL_MEALS_INGREDIENTS,
+  AREA_MEALS,
 } from '../services/NoMagicStuff';
 import {
   setLCFavoritesRecipes,
@@ -20,6 +21,14 @@ import {
   setLCDoneRecipesFiltered,
 } from '../localStorage/initial';
 
+function setAreaFilteredMeals(result, area) {
+  let resp;
+  if (area === 'All') { resp = (result.slice(0, TWELVE)); } else {
+    resp = (result.filter((meal) => meal.strArea === area).slice(0, TWELVE));
+  }
+  return resp;
+}
+
 function ProviderPrimary({ children }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -29,9 +38,12 @@ function ProviderPrimary({ children }) {
   const [fetchResponse, setFetchResponse] = useState(null);
   const [meals, setMeals] = useState(null);
   const [drinks, setDrinks] = useState(null);
+  const [allMeals, setAllMeals] = useState(null);
+  const [allDrinks, setAllDrinks] = useState(null);
   const [mealsArray, setMealsArray] = useState(false);
   const [drinksArray, setDrinksArray] = useState(false);
   const [catList, setCatList] = useState([]);
+  const [areaList, setAreaList] = useState([]);
   const [mealsCatList, setMealsCatList] = useState([]);
   const [drinksCatList, setDrinksCatList] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -45,14 +57,19 @@ function ProviderPrimary({ children }) {
   const [mealsIngredients, setMealsIngredients] = useState([]);
   const [drinksIngredients, setDrinksIngredients] = useState([]);
   const [favorites, setFavorites] = useState([]);
-  // const [selectedIngredient, setSelectedIngredient] = useState('');
-  // const [allDrinks, setAllDrinks] = useState([]);
-  // const [allMeals, setallMeals] = useState([]);
+  const [selectedDrinkIngredient, setSelectedDrinkIngredient] = useState(null);
+  const [selectedMealIngredient, setSelectedMealIngredient] = useState(null);
+  const [drinksFilteredByIngredient, setDrinksFilteredByIngredient] = useState([]);
+  const [mealsFilteredByIngredient, setMealsFilteredByIngredient] = useState([]);
+  const [selectedArea, setSelectedArea] = useState('All');
+  const [mealsFilteredByArea, setMealsFilteredByArea] = useState([]);
+  const [disableBtn, setDisableBtn] = useState(true);
 
   useEffect(() => {
     async function getDrinksResults() {
       const response = await fetch(API_DRINK_ALL);
       const result = await response.json();
+      setAllDrinks(result.drinks);
       setDrinks(result.drinks.slice(0, TWELVE));
       const categories = await fetch(`${CAT_DRINK}`);
       const categoriesList = await categories.json();
@@ -65,38 +82,35 @@ function ProviderPrimary({ children }) {
     async function getMealsResults() {
       const response = await fetch(API_FOOD_ALL);
       const result = await response.json();
+      setAllMeals(result.meals);
       setMeals(result.meals.slice(0, TWELVE));
       const categories = await fetch(`${CAT_FOOD}`);
       const categoriesList = await categories.json();
       setMealsCatList(categoriesList.meals.slice(0, FIVE));
       setMealsArray(true);
+      const filteredMeals = setAreaFilteredMeals(result.meals, selectedArea);
+      setMealsFilteredByArea(filteredMeals);
       const ingredientsList = await fetch(LIST_ALL_MEALS_INGREDIENTS);
       const resultIngredients = await ingredientsList.json();
       setMealsIngredients(resultIngredients.meals.slice(0, TWELVE));
     }
-    // async function allDrinksFiltered() {
-    //   const response = await fetch(API_DRINK_ALL);
-    //   const result = await response.json();
-    //   setAllDrinks(result.drinks);
-    //   console.log(result.drinks);
-    // }
-    // async function allMealsFiltered() {
-    //   const response = await fetch(API_FOOD_ALL);
-    //   const result = await response.json();
-    //   setAllDrinks(result.meals);
-    //   console.log(result.meals);
-    // }
+    async function getAreaList() {
+      const response = await fetch(AREA_MEALS);
+      const result = await response.json();
+      setAreaList(result.meals);
+    }
+    setIsLoading(true);
     getDrinksResults();
     getMealsResults();
+    getAreaList();
     setLCFavoritesRecipes();
     setLCMealsToken();
     setLCCocktailsToken();
     setLCFilter();
     setLCFavoritesRecipesFiltered();
     setLCDoneRecipesFiltered();
-    // allDrinksFiltered();
-    // allMealsFiltered();
-  }, []);
+    setIsLoading(false);
+  }, [selectedArea, selectedDrinkIngredient]);
 
   const contextValue = {
     email,
@@ -113,6 +127,10 @@ function ProviderPrimary({ children }) {
     setFetchResponse,
     meals,
     setMeals,
+    allMeals,
+    setAllMeals,
+    allDrinks,
+    setAllDrinks,
     drinks,
     setDrinks,
     mealsArray,
@@ -147,12 +165,22 @@ function ProviderPrimary({ children }) {
     setDrinksIngredients,
     favorites,
     setFavorites,
-    // selectedIngredient,
-    // setSelectedIngredient,
-    // allDrinks,
-    // setAllDrinks,
-    // allMeals,
-    // setallMeals,
+    selectedDrinkIngredient,
+    setSelectedDrinkIngredient,
+    selectedMealIngredient,
+    setSelectedMealIngredient,
+    drinksFilteredByIngredient,
+    setDrinksFilteredByIngredient,
+    mealsFilteredByIngredient,
+    setMealsFilteredByIngredient,
+    areaList,
+    setAreaList,
+    selectedArea,
+    setSelectedArea,
+    mealsFilteredByArea,
+    setMealsFilteredByArea,
+    disableBtn,
+    setDisableBtn,
   };
 
   return (

@@ -9,12 +9,24 @@ import CategoryFilter from '../components/CategoryFilter';
 export default function Comidas() {
   const location = useLocation();
   let page = location.pathname;
+  let mealsOrigin;
   page = page.replace('/', '');
-  const { setCurrentPage,
+  const {
+    setCurrentPage,
     mealsArray,
     meals,
-    mealsCatList } = useContext(ContextPrimary);
+    mealsCatList,
+    mealsFilteredByIngredient,
+    selectedMealIngredient,
+  } = useContext(ContextPrimary);
+
   const handlePage = () => setCurrentPage(page);
+
+  if (selectedMealIngredient !== null) {
+    mealsOrigin = mealsFilteredByIngredient;
+  } else {
+    mealsOrigin = meals;
+  }
 
   useEffect(() => {
     handlePage();
@@ -26,7 +38,7 @@ export default function Comidas() {
       <div className="categories">
         <CategoryFilter list={ mealsCatList } />
       </div>
-      { mealsArray && <RecipeListMeals list={ meals } page="comidas" />}
+      { mealsArray && <RecipeListMeals list={ mealsOrigin } page="comidas" />}
       <Footer />
     </div>
   );

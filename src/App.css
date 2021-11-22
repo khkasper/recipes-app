@@ -327,9 +327,75 @@ body {
   font-weight: 600;
 }
 
-.favorite-card, .recipes-done-card {
+.favorite-card, .recipes-done-card, .ingredient-card {
   display: flex;
   flex-direction: column;
   margin-top: 15px;
   text-align: center;
+}
+
+.ingredient-card {
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  font-weight: 600;
+  text-align: center;
+  width: 49%;
+}
+
+.ingredients-list {
+  align-items: center;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  padding-bottom: 80px;
+}
+
+.p-ingredient-name {
+  width: 100%;
+}
+
+.img-ingredient {
+  align-self: center;
+  width: 80%;
+}
+
+.button-explore {
+  background-color: rgb(235, 235, 235);
+  border: none;
+  border-radius: 5px;
+  color: rgb(78, 78, 78);
+  height: 40px;
+  margin: 0 0 10px;
+  width: 100%;
+}
+
+.button-explore:hover {
+  background-color: rgb(78, 78, 78);
+  color: #ffc400;
+}
+
+.button-explore-div {
+  display: flex;
+  flex-direction: column;
+}
+
+.area-select {
+  border: 1px solid rgb(177, 177, 177);
+  border-radius: 5px;
+  padding: 0 3px;
+  width: 100%;
+}
+
+.food-card-area {
+  color: #4d4d4d;
+  font-style: italic;
+  text-decoration: none;
+}
+
+.not-found {
+  font-size: 2em;
+  font-weight: 600;
+  text-align: center;
+  width: 100%;
 }

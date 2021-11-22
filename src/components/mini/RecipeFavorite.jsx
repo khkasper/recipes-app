@@ -37,11 +37,9 @@ const RecipeFavorite = ({ data, i }) => {
       );
       setFavorite(true);
     } else {
-      console.log(data);
       console.log(typeof (JSON.parse(localStorage.getItem('favoriteRecipes'))));
       const newLocalKey = (JSON.parse(localStorage.getItem('favoriteRecipes')))
         .filter((rec) => rec.id !== recipe.id);
-      console.log(newLocalKey);
       localStorage.setItem('favoriteRecipes', JSON.stringify(newLocalKey));
       setFavorite(false);
     }
