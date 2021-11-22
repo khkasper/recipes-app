@@ -131,25 +131,3 @@ export const ingredientSrcLink = (ingr) => {
   }
   return linkao;
 };
-
-// a chave favoriteRecipes deve conter a seguinte estrutura:
-// [{
-//     id: id-da-receita,
-//     type: comida-ou-bebida,
-//     area: area-da-receita-ou-texto-vazio,
-//     category: categoria-da-receita-ou-texto-vazio,
-//     alcoholicOrNot: alcoholic-ou-non-alcoholic-ou-texto-vazio,
-//     name: nome-da-receita,
-//     image: imagem-da-receita
-// }]
-// a chave inProgressRecipes deve conter a seguinte estrutura:
-// {
-//     cocktails: {
-//         id-da-bebida: [lista-de-ingredientes-utilizados],
-//         ...
-//     },
-//     meals: {
-//         id-da-comida: [lista-de-ingredientes-utilizados],
-//         ...
-//     }
-// }
